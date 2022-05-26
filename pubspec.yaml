@@ -30,10 +30,84 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Svg
+  flutter_svg: ^1.0.3
+
+  # Dio
+  dio: ^4.0.6
+
+  # Google Signin
+  google_sign_in: ^5.3.0
+
+  # Flutter Facebook Auth
+  flutter_facebook_auth: ^4.3.4
+
+  # Dio Firebase Performance
+  dio_firebase_performance: ^0.3.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+
+  # Intl
+  intl: ^0.17.0
+
+  # Package Info
+  package_info_plus: ^1.4.2
+
+  # Get
+  get: ^4.6.1
+
+  # Get_It
+  get_it: ^7.2.0
+
+  # Secure Storage
+  flutter_secure_storage: ^5.0.2
+
+  # Bloc
+  bloc: ^8.0.3
+
+  # Flutter Bloc
+  flutter_bloc: ^8.0.1
+
+  # Url Launcher
+  url_launcher: ^6.1.2
+
+  # Firebase Core
+  firebase_core: ^1.17.0
+
+  # Firebase Messaging
+  firebase_messaging: ^11.4.0
+
+  # Firebase Auth
+  firebase_auth: ^3.3.18
+
+  # Sentry Flutter
+  sentry_flutter: ^6.5.1
+
+  # SharePreferences
+  shared_preferences: ^2.0.15
+
+  # Google Fonts
+  google_fonts: ^2.3.2
+
+  # Auto Size Text
+  auto_size_text: ^3.0.0
+
+  # Equatable
+  equatable: ^2.0.3
+
+  # Audio
+  just_audio: ^0.9.21
+
+  # Connectivity
+  connectivity_plus: ^2.3.0
+
+  # Awesome Notification
+  #  awesome_notifications: ^0.6.18
+
+  # Sms Autofill
+  sms_autofill: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -46,8 +120,14 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 
+  flutter_localizations:
+    sdk: flutter
+
+  freezed: ^0.15.0+1
+  freezed_annotation: ^0.15.0
+  build_runner: ^2.1.4
 # For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+# following screens: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
@@ -56,6 +136,33 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  generate: true
+
+  assets:
+    - assets/images/
+    - assets/fonts/
+    - assets/audio/
+    - assets/svg/
+    - assets/images/ic_github.png
+    - assets/images/slider_1.png
+    - assets/images/slider_2.png
+    - assets/images/slider_3.png
+    - assets/images/ic_google.png
+    - assets/images/ic_facebook.png
+    - assets/images/nation/ic_vietnam.png
+    - assets/images/ic_back.png
+
+  fonts:
+    - family: LapsusPro
+      fonts:
+        - asset: assets/fonts/font_lapsus_pro.otf
+          weight: 700
+
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/font_poppins.ttf
+          weight: 400
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -87,3 +194,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true
