@@ -95,15 +95,15 @@ class OnBoardingScreenState extends State<OnBoardingScreen> {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: InkWell(
-                      onTap: () {
+                      onTap: () async{
                         if (_currentPage == sliderList.length - 1) {
-                          BlocProvider.of<AuthenticationBloc>(context)
+                          await BlocProvider.of<AuthenticationBloc>(context)
                               .cacheFirstOpenApp();
                           Navigator.of(context)
                               .popAndPushNamed(AuthenticationScreen.routeName);
                         } else {
                           _controller.nextPage(
-                              duration: Duration(microseconds: 300),
+                              duration: const Duration(microseconds: 300),
                               curve: Curves.easeInOut);
                           _currentPage += 1;
                           _onPageChanged(_currentPage);

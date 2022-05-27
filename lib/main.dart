@@ -12,6 +12,7 @@ import 'package:flutter_app_e_commerce/src/common/constants.dart';
 import 'package:flutter_app_e_commerce/src/common/locator.dart';
 import 'package:flutter_app_e_commerce/src/config/app_routes.dart';
 import 'package:flutter_app_e_commerce/src/my_bloc_observer.dart';
+import 'package:flutter_app_e_commerce/src/screens/authentication/authentication_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/error/error_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/home/home_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/onboarding/onboarding_screen.dart';
@@ -83,11 +84,10 @@ class MyApp extends StatelessWidget {
                     if (state is AuthenticatedState) {
                       return HomeScreen();
                     } else if (state is UnAuthenticatedState) {
-                      return SplashScreen();
+                      return AuthenticationScreen();
                     } else if (state is FirstOpenApp) {
                       return OnBoardingScreen();
                     }
-
                     return ErrorScreen();
                   },
                 ));

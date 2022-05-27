@@ -50,13 +50,16 @@ class PreferenceImpl extends Preference {
       return isString ? pref.getString(key) : pref.getBool(key);
     }).then((value) {
       if (value != null) {
+        print("getKeyPref " + value.toString());
         completer.complete(value);
       } else {
         if(!isString){
+          print("getKeyPref YOYO");
           completer.complete(true);
         }
         else{
-          completer.complete("null");
+          print("getKeyPref GG");
+          completer.complete("");
         }
       }
     });
@@ -120,7 +123,7 @@ class PreferenceImpl extends Preference {
   Future<void> cacheFirstOpenApp() async {
     SharedPreferences.getInstance().then((pref) async{
       bool isSaved = await pref.setBool(FIRST_OPEN_APP, false) ;
-      print("Saved " + isSaved.toString());
+      print("Saved " + pref.getBool(FIRST_OPEN_APP).toString());
     });
   }
 }

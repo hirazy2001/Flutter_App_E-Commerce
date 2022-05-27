@@ -34,3 +34,15 @@ class UnAuthenticatedState extends AuthenticationState {
   @override
   List<Object?> get props => throw UnimplementedError();
 }
+
+class OtpSendingState extends AuthenticationState{
+  const OtpSendingState();
+}
+
+class OtpSentState extends AuthenticationState{
+  const OtpSentState();
+}
+
+class OtpErrorState extends AuthenticationState{
+  const OtpErrorState();
+}

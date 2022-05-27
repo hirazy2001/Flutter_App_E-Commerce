@@ -10,6 +10,7 @@ import '../authentication/authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
+
   AuthUtils authUtils = AuthUtils.instance;
   final DataRepository _dataRepository = locator<DataRepository>();
 
@@ -17,7 +18,8 @@ class AuthenticationBloc
     on<AppStarted>(_onLoadAuthentication);
     on<AuthenticationGoogle>(_signInGoogle);
     on<AuthenticationFacebook>(_signInFaceBook);
-    on<AuthenticationRequestOtp>(_requestAuthOtp);
+    on<AuthenticationPhoneRequestOtp>(_requestPhoneAuthOtp);
+    on<AuthenticationEmailRequestOtp>(_requestEmailAuthOtp);
   }
 
   String _token = "";
@@ -28,7 +30,7 @@ class AuthenticationBloc
 
     bool isFirst = (await _dataRepository.firstOpenApp())!;
     print("Is First " + isFirst.toString());
-    if (isFirst) {
+    if (!isFirst) {
       emitter(FirstOpenApp());
     } else {
       _token = (await _dataRepository.getToken())!;
@@ -68,11 +70,25 @@ class AuthenticationBloc
     } on Error catch (e) {}
   }
 
-  void _requestAuthOtp(AuthenticationRequestOtp event,
+  void _requestPhoneAuthOtp(AuthenticationPhoneRequestOtp event,
       Emitter<AuthenticationState> emitter) async{
 
-    await _dataRepository.requestOtp();
+    emitter(const OtpSendingState());
+    try {
+      await _dataRepository.requestPhoneOtp(event.otpRequest);
+      emitter(const OtpSentState());
+    } on Error catch (e) {
+      emitter(const OtpErrorState());
+    }
+  }
 
+  void _requestEmailAuthOtp(AuthenticationEmailRequestOtp event,
+      Emitter<AuthenticationState> emitter) async{
+    emitter(const OtpSendingState());
+
+    await _dataRepository.requestPhoneOtp(event.otpRequest);
+
+    emitter(const OtpSentState());
   }
 
   Future<void> authenticate() async {}

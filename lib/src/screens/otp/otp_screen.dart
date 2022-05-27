@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_e_commerce/src/screens/login/login_screen.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 import '../../data/model/arguments/otp_argument.dart';
@@ -26,7 +25,7 @@ class OtpScreenState extends State<OtpScreen> with CodeAutoFill {
   int indexOtp = 0;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     listenForCode();
 
@@ -46,77 +45,111 @@ class OtpScreenState extends State<OtpScreen> with CodeAutoFill {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: appBar(() {
           /**
            * Remove All Screen until meet Route
            */
           Navigator.of(context).popUntil((route) => route.isFirst);
         }),
-        body: SafeArea(
-            child: Stack(children: [
-          Container(
-              child: Column(
-            children: [
-              const Text(
-                "Please input code contains 6 numbers: ",
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
-                maxLines: 2,
-                textAlign: TextAlign.left,
-              ),
-              Text(
-                widget.emailOrPhone.emailOrPhone,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 12,
-                ),
-              ),
-              Center(
-                child: PinFieldAutoFill(
-                  decoration: UnderlineDecoration(
-                    textStyle: TextStyle(fontSize: 20, color: Colors.black),
-                    colorBuilder:
-                        FixedColorBuilder(Colors.black.withOpacity(0.3)),
-                  ),
-                  currentCode: _code,
-                  onCodeSubmitted: (code) {},
-                  onCodeChanged: (code) {
-                    if (code!.length == 6) {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                    }
-                  },
-                ),
-                //   controller:,
-                //   inputFormatters: [],
-                // ),
-              )
-            ],
-          )),
-          Positioned(
-              child: Column(
-            children: [
-              RichText(
-                  text: const TextSpan(text: 'Hello', children: [
-                TextSpan(
-                    text: '${1}',
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500)),
-                TextSpan(
-                    text: 's',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400))
-              ]))
-            ],
-          ))
-        ])));
+        body: WillPopScope(
+            onWillPop: () {
+              Navigator.popUntil(context, (route) => route.isFirst);
+
+              return Future.value(true);
+            },
+            child: SafeArea(
+                child: Container(
+                    margin: EdgeInsets.all(20),
+                    child: Stack(children: [
+                      Container(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Enter OTP Code",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                            maxLines: 2,
+                            textAlign: TextAlign.left,
+                          ),
+                          const Text(
+                            "Please enter code contains 6 numbers:",
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                            ),
+                            maxLines: 2,
+                            textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            widget.emailOrPhone.emailOrPhone,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 12,
+                            ),
+                          ),
+                          Center(
+                            child: PinFieldAutoFill(
+                                keyboardType: TextInputType.number,
+                                codeLength: 6,
+                                decoration: BoxLooseDecoration(
+                                  textStyle: TextStyle(
+                                      fontSize: 16, color: Colors.limeAccent),
+                                  strokeColorBuilder: FixedColorBuilder(
+                                    Colors.blue,
+                                  ),
+                                  bgColorBuilder:
+                                      FixedColorBuilder(Colors.blue.shade100),
+                                  strokeWidth: 1,
+                                )
+                                //   textStyle:
+                                //       const TextStyle(fontSize: 20, color: Colors.black),
+                                //   colorBuilder:
+                                //       FixedColorBuilder(Colors.black.withOpacity(0.3)),
+                                // ),
+                                // currentCode: _code,
+                                // onCodeSubmitted: (code) {},
+                                // onCodeChanged: (code) {
+                                //   if (code!.length == 6) {
+                                //     FocusScope.of(context).requestFocus(FocusNode());
+                                //   }
+                                // },
+                                ),
+                            //   controller:,
+                            //   inputFormatters: [],
+                            // ),
+                          )
+                        ],
+                      )),
+                      Positioned(
+                          bottom: 0,
+                          child: Column(
+                            children: [
+                              RichText(
+                                  text:
+                                      const TextSpan(text: 'Hello', children: [
+                                TextSpan(
+                                    text: '${1}',
+                                    style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500)),
+                                TextSpan(
+                                    text: 's',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w400))
+                              ]))
+                            ],
+                          ))
+                    ])))));
   }
 
   @override

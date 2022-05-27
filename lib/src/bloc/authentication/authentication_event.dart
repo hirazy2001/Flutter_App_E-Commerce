@@ -17,11 +17,22 @@ class AuthenticationLoginEvent extends AuthenticationEvent {
   AuthenticationLoginEvent({required this.loginRequest});
 }
 
+class AuthenticationPhoneRequestOtp extends AuthenticationEvent{
+  final OtpRequest otpRequest;
+
+  const AuthenticationPhoneRequestOtp({required this.otpRequest});
+}
+
+class AuthenticationEmailRequestOtp extends AuthenticationEvent{
+  final OtpRequest otpRequest;
+
+  const AuthenticationEmailRequestOtp({required this.otpRequest});
+}
+
 class AuthenticationRequestOtp extends AuthenticationEvent{
   final OtpRequest otpRequest;
 
   const AuthenticationRequestOtp({required this.otpRequest});
-
 }
 
 class AuthenticationFailedEvent extends AuthenticationEvent {}
