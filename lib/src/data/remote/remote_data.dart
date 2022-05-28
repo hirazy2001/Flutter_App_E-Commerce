@@ -48,7 +48,7 @@ class RemoteData implements RemoteDataSource {
       'Content-Type': 'application/json'
     };
     var request =
-        http.Request('POST', Uri.parse(Constants.BASE_URL + 'otps/email'));
+        http.Request('POST', Uri.http(Constants.BASE_URL + 'otps/email', '', {} ));
     request.body = json.encode({"email": otpRequest.phone});
     request.headers.addAll(headers);
 
@@ -69,22 +69,31 @@ class RemoteData implements RemoteDataSource {
         'Authorization': 'Bearer ' + Constants.MASTER_KEY,
         'Content-Type': 'application/json'
       };
+
       var request =
-        await http.Request('POST', Uri.parse(Constants.BASE_URL + 'otps/phone'));
+        await http.Request('POST', Uri.http(Constants.BASE_URL + 'otps/phone', ''));
+
+      print("BASE_URL " + Constants.BASE_URL + 'otps/phone');
+
       request.body = json.encode({"phone": otpRequest.phone});
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        print(await response.stream.bytesToString());
+        print("Response " + await response.stream.bytesToString());
       } else {
-        print(response.reasonPhrase);
+        print("Response Error " + response.reasonPhrase.toString());
       }
     }
     on Exception catch(e){
       print("Exception " + e.toString());
     }
 
+  }
+
+  @override
+  Future<void> requestHome() {
+    throw UnimplementedError();
   }
 }

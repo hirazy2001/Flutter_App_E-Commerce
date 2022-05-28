@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 import '../../data/model/arguments/otp_argument.dart';
 import '../../widgets/app_bar_screen.dart';
+import '../../widgets/button_material.dart';
 
 class OtpScreen extends StatefulWidget {
   static const String routName = '/otp';
@@ -23,11 +26,15 @@ class OtpScreenState extends State<OtpScreen> with CodeAutoFill {
   String? otpCode;
   String _code = "";
   int indexOtp = 0;
+  late Timer _timer;
+  int _start = 60;
 
   @override
   void initState() {
     super.initState();
     listenForCode();
+
+    startTimer();
 
     SmsAutoFill().getAppSignature.then((signature) {
       setState(() {
@@ -39,7 +46,23 @@ class OtpScreenState extends State<OtpScreen> with CodeAutoFill {
   @override
   void dispose() {
     SmsAutoFill().unregisterListener();
+    _timer.cancel();
     super.dispose();
+  }
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(oneSec, (timer) {
+      if (_start == 0) {
+        setState(() {
+          timer.cancel();
+        });
+      } else {
+        setState(() {
+          _start--;
+        });
+      }
+    });
   }
 
   @override
@@ -60,7 +83,7 @@ class OtpScreenState extends State<OtpScreen> with CodeAutoFill {
             },
             child: SafeArea(
                 child: Container(
-                    margin: EdgeInsets.all(20),
+                    margin: const EdgeInsets.all(20),
                     child: Stack(children: [
                       Container(
                           child: Column(
@@ -99,54 +122,61 @@ class OtpScreenState extends State<OtpScreen> with CodeAutoFill {
                                 keyboardType: TextInputType.number,
                                 codeLength: 6,
                                 decoration: BoxLooseDecoration(
-                                  textStyle: TextStyle(
+                                  textStyle: const TextStyle(
                                       fontSize: 16, color: Colors.limeAccent),
-                                  strokeColorBuilder: FixedColorBuilder(
-                                    Colors.blue,
-                                  ),
-                                  bgColorBuilder:
-                                      FixedColorBuilder(Colors.blue.shade100),
+                                  strokeColorBuilder: PinListenColorBuilder(
+                                      Colors.blue, Colors.transparent),
+                                  bgColorBuilder: PinListenColorBuilder(
+                                      Colors.blue.shade100, Colors.black12),
                                   strokeWidth: 1,
-                                )
-                                //   textStyle:
-                                //       const TextStyle(fontSize: 20, color: Colors.black),
-                                //   colorBuilder:
-                                //       FixedColorBuilder(Colors.black.withOpacity(0.3)),
-                                // ),
-                                // currentCode: _code,
-                                // onCodeSubmitted: (code) {},
-                                // onCodeChanged: (code) {
-                                //   if (code!.length == 6) {
-                                //     FocusScope.of(context).requestFocus(FocusNode());
-                                //   }
-                                // },
-                                ),
-                            //   controller:,
-                            //   inputFormatters: [],
-                            // ),
+                                )),
                           )
                         ],
                       )),
                       Positioned(
+                        left: 0,
+                          right: 0,
                           bottom: 0,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               RichText(
-                                  text:
-                                      const TextSpan(text: 'Hello', children: [
-                                TextSpan(
-                                    text: '${1}',
-                                    style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500)),
-                                TextSpan(
-                                    text: 's',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w400))
-                              ]))
+                                  text: TextSpan(
+                                      text: 'Send Otp Again',
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w400),
+                                      children: [
+                                    TextSpan(
+                                        text: ' ${_start}',
+                                        style: const TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500)),
+                                    const TextSpan(
+                                        text: 's',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400))
+                                  ])),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ButtonMaterial(
+                                    text: "Continue",
+                                    onClick: () {
+
+
+                                    },
+                                  )
+                                ],
+                              )
                             ],
                           ))
                     ])))));

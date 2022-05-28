@@ -57,14 +57,14 @@ class AuthenticationScreenState extends State<AuthenticationScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Sign in or sign up by phone",
                 style: TextStyle(
                     color: Colors.white54,
                     fontSize: 14,
                     fontWeight: FontWeight.w400),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               InkWell(

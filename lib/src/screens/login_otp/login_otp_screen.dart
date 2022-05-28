@@ -16,6 +16,7 @@ import 'package:sms_autofill/sms_autofill.dart';
 
 import '../../bloc/authentication/authentication_bloc.dart';
 import '../../data/model/arguments/otp_argument.dart';
+import '../../widgets/button_material.dart';
 
 class LoginOtpScreen extends StatefulWidget {
   static const String routeName = "/login_otp";
@@ -30,10 +31,11 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
   late FocusNode focusNode;
   final TextEditingController _controller = TextEditingController();
   bool isValid = true;
+  bool isPhone = true;
 
   @override
   void initState() {
-    focusNode = new FocusNode();
+    focusNode = FocusNode();
     focusNode.requestFocus();
   }
 
@@ -51,12 +53,15 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
           if (state is OtpSendingState) {
             DialogLoading.showDialogLoading(context);
           } else {
-            print("Otp Error");
+            if (state is OtpErrorState) {
+              print("Otp Error");
+            } else {
+              print("Otp Success");
+            }
             // Navigator.of(context).pop();
             // Navigator.popUntil(context, (route) => route.isFirst);
-            Navigator.popAndPushNamed(context, OtpScreen.routName, arguments: OtpArgument(
-              emailOrPhone: _controller.text
-            ));
+            Navigator.popAndPushNamed(context, OtpScreen.routName,
+                arguments: OtpArgument(emailOrPhone: _controller.text));
             // Get.back();
           }
         },
@@ -90,13 +95,14 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: isValid ? Colors.transparent : Colors.red,
                               width: 1.0),
                           color: Colors.black12,
-                          borderRadius: const BorderRadius.all(Radius.circular(10))),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10))),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -147,18 +153,9 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
                     right: 0,
                     child: Column(
                       children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0.0,
-                            primary: Colors.red.withOpacity(0),
-                            shape: ContinuousRectangleBorder(
-                                borderRadius: BorderRadius.circular(1),
-                                side: const BorderSide(color: Colors.white)),
-                          ),
-                          onPressed: () {
-                            // final regexp = RegExp(Common.REGEX_PHONE_NUMBER_VN);
-                            // final match = regexp.hasMatch("+84" + _controller.text);
-
+                        ButtonMaterial(
+                          text: "Continue",
+                          onClick: () {
                             if (true) {
                               authBloc.add(AuthenticationPhoneRequestOtp(
                                   otpRequest: OtpRequest(
@@ -169,30 +166,8 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
                               });
                             }
                           },
-                          child: Ink(
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Color.fromARGB(255, 224, 110, 75),
-                                Color.fromARGB(255, 196, 15, 60),
-                                Color.fromARGB(255, 179, 2, 172),
-                              ]),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(80.0)),
-                            ),
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.only(top: 12, bottom: 12),
-                              alignment: Alignment.center,
-                              child: const Text(
-                                "Send SMS OTP",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18),
-                              ),
-                            ),
-                          ),
                         ),
+                        SizedBox(height: 10,),
                         RichText(
                             textAlign: TextAlign.left,
                             text: TextSpan(text: 'Hello', children: [
@@ -235,21 +210,6 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
                                       fontSize: 13,
                                       fontWeight: FontWeight.w400)),
                             ]))
-                        // RichText(
-                        //     text: const TextSpan(text: 'Hello', children: [
-                        //   TextSpan(
-                        //       text: '${1}',
-                        //       style: TextStyle(
-                        //           color: Colors.red,
-                        //           fontSize: 14,
-                        //           fontWeight: FontWeight.w500)),
-                        //   TextSpan(
-                        //       text: 's',
-                        //       style: TextStyle(
-                        //           color: Colors.black,
-                        //           fontSize: 13,
-                        //           fontWeight: FontWeight.w400))
-                        // ]))
                       ],
                     ))
               ],

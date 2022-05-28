@@ -16,4 +16,6 @@ abstract class RemoteDataSource{
   Future<void> requestPhoneOtp(OtpRequest otpRequest);
 
   Future<void> requestEmailOtp(OtpRequest otpRequest);
+
+  Future<void> requestHome();
 }

@@ -5,7 +5,9 @@ class HomeEvent extends Equatable{
   List<Object?> get props => throw UnimplementedError();
 }
 
-class LoadingEvent extends Equatable{
+class RefreshEvent extends HomeEvent{
+
   @override
   List<Object?> get props => throw UnimplementedError();
 }
+

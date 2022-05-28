@@ -68,7 +68,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           _configureAuthenticationBloc(),
-          _configureInternetConnection()
+          _configureInternetConnection(),
+
         ],
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
           listener: (context, state) {},

@@ -30,6 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Http
+  http: ^0.13.4
+
   # Svg
   flutter_svg: ^1.0.3
 
@@ -115,6 +118,9 @@ dependencies:
   # Staggered GridView
   flutter_staggered_grid_view: ^0.6.1
 
+  # Refresh Indicator
+  custom_refresh_indicator: ^1.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -160,7 +166,10 @@ flutter:
     - assets/images/nation/ic_vietnam.png
     - assets/images/ic_back.png
     - assets/images/ic_menu.png
+    - assets/images/ic_hide.png
+    - assets/images/ic_show.png
     - assets/raw/anim_loading.json
+    - assets/raw/anim_refresh.json
 
   fonts:
     - family: LapsusPro
