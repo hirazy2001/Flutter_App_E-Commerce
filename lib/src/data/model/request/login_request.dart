@@ -4,7 +4,4 @@ class LoginRequest {
 
   LoginRequest({required this.phoneOrEmail, required this.password});
 
-  Map<String, dynamic> toJson() => {
-
-  };
 }

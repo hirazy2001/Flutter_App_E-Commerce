@@ -8,6 +8,7 @@ import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_bl
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_event.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_state.dart';
 import 'package:flutter_app_e_commerce/src/bloc/internet/internet_cubit.dart';
+import 'package:flutter_app_e_commerce/src/bloc/otp/otp_bloc.dart';
 import 'package:flutter_app_e_commerce/src/common/constants.dart';
 import 'package:flutter_app_e_commerce/src/common/locator.dart';
 import 'package:flutter_app_e_commerce/src/config/app_routes.dart';
@@ -69,7 +70,7 @@ class MyApp extends StatelessWidget {
         providers: [
           _configureAuthenticationBloc(),
           _configureInternetConnection(),
-
+          _configureOtpBloc()
         ],
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
           listener: (context, state) {},
@@ -106,6 +107,16 @@ class MyApp extends StatelessWidget {
         ..add(
           AppStarted(),
         ),
+    );
+  }
+
+  BlocProvider<OtpBloc> _configureOtpBloc() {
+    return BlocProvider<OtpBloc>(
+      create: (context) => OtpBloc(
+        // UninitializedState(),
+        // RepositoryProvider.of<UserAuthenticationRespository>(context),
+        // RepositoryProvider.of<ApiClient>(context),
+      )
     );
   }
 

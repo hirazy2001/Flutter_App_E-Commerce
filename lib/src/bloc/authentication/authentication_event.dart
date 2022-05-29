@@ -29,10 +29,10 @@ class AuthenticationEmailRequestOtp extends AuthenticationEvent{
   const AuthenticationEmailRequestOtp({required this.otpRequest});
 }
 
-class AuthenticationRequestOtp extends AuthenticationEvent{
+class AuthenticationVerifyOtp extends AuthenticationEvent{
   final OtpRequest otpRequest;
 
-  const AuthenticationRequestOtp({required this.otpRequest});
+  const AuthenticationVerifyOtp({required this.otpRequest});
 }
 
 class AuthenticationFailedEvent extends AuthenticationEvent {}

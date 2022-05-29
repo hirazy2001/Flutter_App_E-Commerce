@@ -1,4 +1,5 @@
 import 'package:flutter_app_e_commerce/src/data/data_repository.dart';
+import 'package:flutter_app_e_commerce/src/data/model/request/otp_auth.dart';
 import 'package:flutter_app_e_commerce/src/data/model/request/otp_request.dart';
 import 'package:flutter_app_e_commerce/src/data/remote/remote_data_source.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,11 +58,6 @@ class DataRepositoryImpl implements DataRepository {
   }
 
   @override
-  Future<void> requestOtp() async {
-    await _remoteDataSource.authRequestOtp();
-  }
-
-  @override
   Future<void> requestEmailOtp(OtpRequest otpRequest) async {
     print("REQUEST OTP EMAIL");
     await _remoteDataSource.requestEmailOtp(otpRequest);
@@ -71,5 +67,10 @@ class DataRepositoryImpl implements DataRepository {
   Future<void> requestPhoneOtp(OtpRequest otpRequest) async{
     print("REQUEST OTP PHONE");
     await _remoteDataSource.requestPhoneOtp(otpRequest);
+  }
+
+  @override
+  Future<void> authOtp(OtpAuth otpAuth) async{
+    await _remoteDataSource.authRequestOtp(otpAuth);
   }
 }

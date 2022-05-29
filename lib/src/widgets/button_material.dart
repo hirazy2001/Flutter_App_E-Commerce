@@ -9,36 +9,36 @@ class ButtonMaterial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50.0,
-      child: RaisedButton(
-        onPressed: onClick,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
-        padding: EdgeInsets.all(0.0),
-        child: Ink(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Color(0xff374ABE), Color(0xff64B6FF)],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-              borderRadius: BorderRadius.circular(30.0)
-          ),
-          child: Container(
-            constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-            alignment: Alignment.center,
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.white,
-                fontWeight: FontWeight.w400,
-                fontSize: 18
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+    // return Container(
+    //   height: 50.0,
+    //   child: RaisedButton(
+    //     onPressed: onClick,
+    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+    //     padding: EdgeInsets.all(0.0),
+    //     child: Ink(
+    //       decoration: BoxDecoration(
+    //           gradient: LinearGradient(colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+    //             begin: Alignment.centerLeft,
+    //             end: Alignment.centerRight,
+    //           ),
+    //           borderRadius: BorderRadius.circular(30.0)
+    //       ),
+    //       child: Container(
+    //         constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+    //         alignment: Alignment.center,
+    //         child: Text(
+    //           text,
+    //           textAlign: TextAlign.center,
+    //           style: TextStyle(
+    //               color: Colors.white,
+    //             fontWeight: FontWeight.w400,
+    //             fontSize: 18
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
     //   ElevatedButton(
     //   style: ElevatedButton.styleFrom(
     //     elevation: 0.0,
@@ -68,5 +68,39 @@ class ButtonMaterial extends StatelessWidget {
     //     ),
     //   ),
     // );
+    return GestureDetector(
+      onTap: onClick,
+      child: Container(
+        height: 45,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.teal,
+              Colors.teal.shade200,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(5, 5),
+              blurRadius: 10,
+            )
+          ],
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

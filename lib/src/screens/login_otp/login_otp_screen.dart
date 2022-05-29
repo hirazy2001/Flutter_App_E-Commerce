@@ -47,7 +47,9 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
       backgroundColor: Colors.white,
       appBar: appBar(() {
         Navigator.pop(context);
-      }, true, () {}),
+      }, true, () {
+
+      }),
       body: BlocListener<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
           if (state is OtpSendingState) {
@@ -129,10 +131,11 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
                               child: PhoneFieldHint(
                             autoFocus: true,
                             controller: _controller,
-                            child: const TextField(
+                            child:  TextField(
+                              controller: _controller,
                               autofocus: true,
                               keyboardType: TextInputType.number,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Enter your phone number',
                               ),
@@ -159,7 +162,7 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
                             if (true) {
                               authBloc.add(AuthenticationPhoneRequestOtp(
                                   otpRequest: OtpRequest(
-                                      phone: _controller.text.trim())));
+                                      phone: "+84" + _controller.text.trim())));
                             } else {
                               setState(() {
                                 isValid = false;

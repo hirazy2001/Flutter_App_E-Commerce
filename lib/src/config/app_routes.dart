@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_e_commerce/src/screens/home/home_screen.dart';
+import 'package:flutter_app_e_commerce/src/screens/login/login_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/login_otp/login_otp_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/otp/otp_screen.dart';
@@ -47,6 +48,11 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) => LoginOtpScreen(),
             settings: const RouteSettings(name: LoginOtpScreen.routeName));
+
+      case LoginScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+            settings: const RouteSettings(name: LoginScreen.routeName));
 
       default:
         return MaterialPageRoute(

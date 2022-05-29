@@ -56,7 +56,6 @@ class AuthenticationBloc
     try {
       UserCredential userCredential = await authUtils.loginFacebook();
 
-      print("Facebook User " + userCredential.user!.uid);
       emitter(const AuthenticatedState());
     } on Error catch (e) {}
   }
@@ -86,7 +85,7 @@ class AuthenticationBloc
       Emitter<AuthenticationState> emitter) async{
     emitter(const OtpSendingState());
 
-    await _dataRepository.requestPhoneOtp(event.otpRequest);
+    var data = await _dataRepository.requestPhoneOtp(event.otpRequest);
 
     emitter(const OtpSentState());
   }

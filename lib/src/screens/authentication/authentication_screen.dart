@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_bloc.dart';
+import 'package:flutter_app_e_commerce/src/screens/login/login_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/login_otp/login_otp_screen.dart';
 import 'package:flutter_app_e_commerce/src/widgets/login/button_facebook.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -109,7 +111,9 @@ class AuthenticationScreenState extends State<AuthenticationScreen> {
                 height: 40,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, LoginScreen.routeName);
+                },
                 child: const Text(
                   "Sign in Account",
                   style: TextStyle(
@@ -178,33 +182,41 @@ class AuthenticationScreenState extends State<AuthenticationScreen> {
           ));
     }
 
-    return Scaffold(
-        body: SafeArea(
-      child: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xff5490f8),
-                      Color(0xff4c70f6),
-                      Color(0xff2852ef),
-                      Color(0xff2650ea),
-                      Color(0xff2851e5),
-                      Color(0xff1a42d9),
-                      // Color(0xff1260e8),
-                      // Color(0xff1260e8),
-                    ])),
-          ),
-          Positioned(top: 15, left: 0, right: 0, child: topScreen()),
-          Positioned(child: middleScreen()),
-          Positioned(left: 0, bottom: 0, right: 0, child: bottomScreen())
-        ],
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.red,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarIconBrightness: Brightness.dark,
       ),
-    ));
+      child: Scaffold(
+          body: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0xff5490f8),
+                        Color(0xff4c70f6),
+                        Color(0xff2852ef),
+                        Color(0xff2650ea),
+                        Color(0xff2851e5),
+                        Color(0xff1a42d9),
+                        // Color(0xff1260e8),
+                        // Color(0xff1260e8),
+                      ])),
+            ),
+            Positioned(top: 15, left: 0, right: 0, child: topScreen()),
+            Positioned(child: middleScreen()),
+            Positioned(left: 0, bottom: 0, right: 0, child: bottomScreen())
+          ],
+        ),
+      )),
+    );
   }
 
   @override
