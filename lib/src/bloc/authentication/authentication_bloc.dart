@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_app_e_commerce/src/data/data_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../main.dart';
 import '../../common/auth_utils.dart';
 import '../../common/locator.dart';
 import '../authentication/authentication_event.dart';
@@ -20,6 +19,8 @@ class AuthenticationBloc
     on<AuthenticationFacebook>(_signInFaceBook);
     on<AuthenticationPhoneRequestOtp>(_requestPhoneAuthOtp);
     on<AuthenticationEmailRequestOtp>(_requestEmailAuthOtp);
+    on<AuthenticationLoginEvent>(_login);
+    on<RegisterEvent>(_signUp);
   }
 
   String _token = "";
@@ -27,9 +28,7 @@ class AuthenticationBloc
   void _onLoadAuthentication(
       AppStarted event, Emitter<AuthenticationState> emitter) async {
     emitter(const AuthenticationLoading());
-
     bool isFirst = (await _dataRepository.firstOpenApp())!;
-    print("Is First " + isFirst.toString());
     if (!isFirst) {
       emitter(FirstOpenApp());
     } else {
@@ -42,9 +41,11 @@ class AuthenticationBloc
     }
   }
 
-  Future<void> login(AuthenticationLoginEvent event,
+  Future<void> _login(AuthenticationLoginEvent event,
       Emitter<AuthenticationState> emitter) async {
-    // await _dataRepository.authentication();
+    emitter(const AuthenticationLoading());
+    await _dataRepository.login(event.loginRequest);
+    emitter(const AuthenticatedState());
   }
 
   Future<void> cacheFirstOpenApp() async {
@@ -55,9 +56,13 @@ class AuthenticationBloc
       Emitter<AuthenticationState> emitter) async {
     try {
       UserCredential userCredential = await authUtils.loginFacebook();
-
       emitter(const AuthenticatedState());
     } on Error catch (e) {}
+  }
+
+  void _signUp(RegisterEvent event, Emitter<AuthenticationState> emitter) async{
+
+
   }
 
   void _signInGoogle(
@@ -84,15 +89,15 @@ class AuthenticationBloc
   void _requestEmailAuthOtp(AuthenticationEmailRequestOtp event,
       Emitter<AuthenticationState> emitter) async{
     emitter(const OtpSendingState());
-
-    var data = await _dataRepository.requestPhoneOtp(event.otpRequest);
-
+    var data = await _dataRepository.requestEmailOtp(event.otpRequest);
     emitter(const OtpSentState());
   }
 
   Future<void> authenticate() async {}
 
-  Future<void> signup() async {}
+  Future<void> signup(RegisterEvent event, Emitter<AuthenticationState> emitter) async {
+    // emitter(const )
+  }
 
   Future<void> logout() async {}
 }

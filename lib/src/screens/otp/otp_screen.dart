@@ -183,7 +183,7 @@ class OtpScreenState extends State<OtpScreen> with CodeAutoFill {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                _start == 0
+                                _start != 0
                                     ? RichText(
                                         text: TextSpan(
                                             text: 'Send Otp Again',

@@ -31,7 +31,6 @@ class Constants {
   /// STRING
   static const String NOTE_OTP_PHONE = "Please note that by creating and/or use user account, you agree to ";
 
-
   /// COLOR
   static const Color colorInput = Colors.black26;
 

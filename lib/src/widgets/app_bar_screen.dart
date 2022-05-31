@@ -28,14 +28,15 @@ AppBar appBar(Function() onTap,
         ? []
         : [
             Container(
-              margin: EdgeInsets.only(right: 15),
+              margin: const EdgeInsets.only(right: 15),
               child: PopupMenuButton<int>(
                   child: const Image(
                     width: 20,
                     height: 20,
                     image: AssetImage('assets/images/ic_menu.png'),
                   ),
-                  onSelected: (item) => onTapActions,
+                  onSelected:
+                    onTapActions!(),
                   itemBuilder: (context) => [
                         const PopupMenuItem<int>(
                             child: Text(

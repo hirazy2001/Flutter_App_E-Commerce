@@ -6,6 +6,7 @@ import 'package:flutter_app_e_commerce/src/screens/login_otp/login_otp_screen.da
 import 'package:flutter_app_e_commerce/src/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/otp/otp_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/setting/setting_screen.dart';
+import 'package:flutter_app_e_commerce/src/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/splash/splash_screen.dart';
 
 import '../data/model/arguments/otp_argument.dart';
@@ -53,6 +54,12 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) => LoginScreen(),
             settings: const RouteSettings(name: LoginScreen.routeName));
+
+      case SignUpScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => SignUpScreen(emailOrPhone: settings.arguments as String),
+            settings: const RouteSettings(name: SignUpScreen.routeName)
+        );
 
       default:
         return MaterialPageRoute(

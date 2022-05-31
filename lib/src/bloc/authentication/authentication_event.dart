@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_app_e_commerce/src/data/model/request/login_request.dart';
 import 'package:flutter_app_e_commerce/src/data/model/request/otp_request.dart';
+import 'package:flutter_app_e_commerce/src/data/model/request/register_request.dart';
 
 class AuthenticationEvent extends Equatable {
   const AuthenticationEvent();
@@ -11,10 +12,16 @@ class AuthenticationEvent extends Equatable {
 
 class AppStarted extends AuthenticationEvent {}
 
+class RegisterEvent extends AuthenticationEvent{
+  final RegisterRequest request;
+
+  const RegisterEvent({required this.request});
+}
+
 class AuthenticationLoginEvent extends AuthenticationEvent {
   final LoginRequest loginRequest;
 
-  AuthenticationLoginEvent({required this.loginRequest});
+  const AuthenticationLoginEvent({required this.loginRequest});
 }
 
 class AuthenticationPhoneRequestOtp extends AuthenticationEvent{

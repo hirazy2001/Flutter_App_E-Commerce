@@ -121,6 +121,9 @@ dependencies:
   # Refresh Indicator
   custom_refresh_indicator: ^1.1.1
 
+  # Flutter Toast
+  fluttertoast: ^8.0.9
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

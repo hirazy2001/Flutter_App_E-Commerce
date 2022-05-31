@@ -1,12 +1,14 @@
 import 'package:flutter_app_e_commerce/src/data/data_repository.dart';
 import 'package:flutter_app_e_commerce/src/data/model/request/otp_auth.dart';
 import 'package:flutter_app_e_commerce/src/data/model/request/otp_request.dart';
+import 'package:flutter_app_e_commerce/src/data/model/response/response_code.dart';
 import 'package:flutter_app_e_commerce/src/data/remote/remote_data_source.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../main.dart';
 import '../common/locator.dart';
 import 'local/preference.dart';
+import 'model/request/login_request.dart';
 
 class DataRepositoryImpl implements DataRepository {
   final Preference _preferences = locator<Preference>();
@@ -33,8 +35,8 @@ class DataRepositoryImpl implements DataRepository {
   }
 
   @override
-  Future<void> login() {
-    throw UnimplementedError();
+  Future<ResponseCode> login(LoginRequest request) async{
+    return await _remoteDataSource.login(request);
   }
 
   @override
@@ -49,12 +51,10 @@ class DataRepositoryImpl implements DataRepository {
 
   @override
   Future<void> signInFacebook() async {
-    await _remoteDataSource.signInFaceBook();
   }
 
   @override
   Future<void> signInGoogle() async {
-    await _remoteDataSource.signInGoogle();
   }
 
   @override
