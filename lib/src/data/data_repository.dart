@@ -8,6 +8,8 @@ import 'package:flutter_app_e_commerce/src/data/model/response/response_code.dar
 import '../common/locator.dart';
 
 abstract class DataRepository {
+  Future<void> setToken(String token);
+
   Future<String?> getToken();
 
   Future<bool?> firstOpenApp();
@@ -24,9 +26,9 @@ abstract class DataRepository {
 
   Future<void> signInGoogle();
 
-  Future<void> requestPhoneOtp(OtpRequest otpRequest);
+  Future<ResponseCode> requestPhoneOtp(OtpRequest otpRequest);
 
-  Future<void> requestEmailOtp(OtpRequest otpRequest);
+  Future<ResponseCode> requestEmailOtp(OtpRequest otpRequest);
 
-  Future<void> authOtp(OtpAuth otpAuth);
+  Future<ResponseCode> authOtp(OtpAuth otpAuth);
 }

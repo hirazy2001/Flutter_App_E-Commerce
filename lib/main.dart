@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_bloc.dart';
@@ -13,15 +14,10 @@ import 'package:flutter_app_e_commerce/src/common/constants.dart';
 import 'package:flutter_app_e_commerce/src/common/locator.dart';
 import 'package:flutter_app_e_commerce/src/config/app_routes.dart';
 import 'package:flutter_app_e_commerce/src/my_bloc_observer.dart';
-import 'package:flutter_app_e_commerce/src/screens/authentication/authentication_screen.dart';
-import 'package:flutter_app_e_commerce/src/screens/error/error_screen.dart';
-import 'package:flutter_app_e_commerce/src/screens/home/home_screen.dart';
-import 'package:flutter_app_e_commerce/src/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/splash/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,7 +50,7 @@ void main() async {
   // AssetPicker.registerObserve();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.blue,
+    statusBarColor: Colors.transparent,
   ));
 }
 
@@ -81,18 +77,19 @@ class MyApp extends StatelessWidget {
                   primarySwatch: Colors.blue,
                 ),
                 onGenerateRoute: AppRoutes.generateRoute,
-                home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-                  builder: (context, state) {
-                    if (state is AuthenticatedState) {
-                      return HomeScreen();
-                    } else if (state is UnAuthenticatedState) {
-                      return AuthenticationScreen();
-                    } else if (state is FirstOpenApp) {
-                      return OnBoardingScreen();
-                    }
-                    return ErrorScreen();
-                  },
-                ));
+                home: SplashScreen());
+            // BlocBuilder<AuthenticationBloc, AuthenticationState>(
+            //   builder: (context, state) {
+            //     if (state is AuthenticatedState) {
+            //       return HomeScreen();
+            //     } else if (state is UnAuthenticatedState) {
+            //       return AuthenticationScreen();
+            //     } else if (state is FirstOpenApp) {
+            //       return OnBoardingScreen();
+            //     }
+            //     return ErrorScreen();
+            //   },
+            // ));
           },
         ));
   }
@@ -112,12 +109,11 @@ class MyApp extends StatelessWidget {
 
   BlocProvider<OtpBloc> _configureOtpBloc() {
     return BlocProvider<OtpBloc>(
-      create: (context) => OtpBloc(
-        // UninitializedState(),
-        // RepositoryProvider.of<UserAuthenticationRespository>(context),
-        // RepositoryProvider.of<ApiClient>(context),
-      )
-    );
+        create: (context) => OtpBloc(
+            // UninitializedState(),
+            // RepositoryProvider.of<UserAuthenticationRespository>(context),
+            // RepositoryProvider.of<ApiClient>(context),
+            ));
   }
 
   BlocProvider<InternetCubit> _configureInternetConnection() {

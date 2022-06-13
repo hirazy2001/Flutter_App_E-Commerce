@@ -5,19 +5,26 @@ import '../../common/constants.dart';
 class BodySplash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
         child: Center(
       child: Column(
         children: [
           Row(
             children: [
-               Container(
-                child: Image.asset(''),
+              Container(
+                child: Image.asset(
+                  'assets/images/ic_github.png',
+                  width: 30,
+                  height: 30,
+                ),
               ),
-              const Text(Constants.APP_NAME)
+              Text(Constants.APP_NAME)
             ],
           ),
-          Text(Constants.TITLE_SPLASH)
+          const Text(
+            Constants.TITLE_SPLASH,
+            style: TextStyle(),
+          )
         ],
       ),
     ));

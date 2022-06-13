@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_app_e_commerce/src/data/data_repository.dart';
+import 'package:flutter_app_e_commerce/src/data/model/response/user_login.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../common/auth_utils.dart';
 import '../../common/locator.dart';
+import '../../data/model/response/response_code.dart';
 import '../authentication/authentication_event.dart';
 import '../authentication/authentication_state.dart';
 
@@ -44,8 +46,18 @@ class AuthenticationBloc
   Future<void> _login(AuthenticationLoginEvent event,
       Emitter<AuthenticationState> emitter) async {
     emitter(const AuthenticationLoading());
-    await _dataRepository.login(event.loginRequest);
-    emitter(const AuthenticatedState());
+    ResponseCode responseCode = await _dataRepository.login(event.loginRequest);
+    if(responseCode.status == 200){
+      print("Authenticated");
+      UserLogin userLogin = UserLogin.fromJson(responseCode.data);
+      _dataRepository.setToken(userLogin.token);
+      emitter(const AuthenticatedState());
+    }
+    else{
+      print("UnAuthenticated");
+      _dataRepository.setToken("123");
+      emitter(const UnAuthenticatedState());
+    }
   }
 
   Future<void> cacheFirstOpenApp() async {
@@ -69,7 +81,6 @@ class AuthenticationBloc
       AuthenticationGoogle event, Emitter<AuthenticationState> emitter) async {
     try {
       UserCredential userCredential = await authUtils.loginGoogle();
-      print("Email " + userCredential.user!.email!);
       emitter(const AuthenticatedState());
     } on Error catch (e) {}
   }
@@ -96,7 +107,6 @@ class AuthenticationBloc
   Future<void> authenticate() async {}
 
   Future<void> signup(RegisterEvent event, Emitter<AuthenticationState> emitter) async {
-    // emitter(const )
   }
 
   Future<void> logout() async {}

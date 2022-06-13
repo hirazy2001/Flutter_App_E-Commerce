@@ -5,19 +5,21 @@ import 'package:flutter_app_e_commerce/src/bloc/home/home_state.dart';
 import '../../common/locator.dart';
 import '../../data/data_repository.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState>{
-
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final DataRepository _dataRepository = locator<DataRepository>();
 
-  HomeBloc() : super(LoadingState()){
-    on<RefreshEvent>(_onRefreshHome);
+  HomeBloc() : super(const LoadingState()) {
+    on<HomeRefreshEvent>(_onRefreshHome);
   }
 
-  void onLoadHome(){
+  void onLoadHome(HomeRefreshEvent event, Emitter<HomeState> emitter) {
+    emitter(const LoadingState());
+  }
+
+  void _onRefreshHome(HomeRefreshEvent event, Emitter<HomeState> emitter) {
+    emitter(const LoadingState());
 
   }
 
-  void _onRefreshHome(RefreshEvent event, Emitter<HomeState> emitter){
-
-  }
+  void _onDetailProduct() {}
 }

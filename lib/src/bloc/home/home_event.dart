@@ -2,12 +2,17 @@ import 'package:equatable/equatable.dart';
 
 class HomeEvent extends Equatable{
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
-class RefreshEvent extends HomeEvent{
+class HomeRefreshEvent extends HomeEvent{
 
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
+class DetailProductEvent extends HomeEvent{
+  final String productId;
+
+  DetailProductEvent({required this.productId});
+}

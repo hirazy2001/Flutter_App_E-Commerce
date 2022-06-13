@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_event.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_state.dart';
 import 'package:flutter_app_e_commerce/src/common/common.dart';
@@ -12,7 +10,6 @@ import 'package:flutter_app_e_commerce/src/screens/otp/otp_screen.dart';
 import 'package:flutter_app_e_commerce/src/widgets/app_bar_screen.dart';
 import 'package:flutter_app_e_commerce/src/widgets/dialog_loading.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 import '../../bloc/authentication/authentication_bloc.dart';
@@ -71,7 +68,9 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
             // Navigator.of(context).pop();
             // Navigator.popUntil(context, (route) => route.isFirst);
             Navigator.popAndPushNamed(context, OtpScreen.routName,
-                arguments: OtpArgument(emailOrPhone: _controller.text));
+                arguments: OtpArgument(
+                    emailOrPhone:
+                        isPhone ? _controller.text : _emailController.text));
             // Get.back();
           }
         },
@@ -140,17 +139,17 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
                                 ),
                                 Expanded(
                                     child: PhoneFieldHint(
-                                  autoFocus: true,
-                                  controller: _controller,
-                                  child: TextField(
+                                    autoFocus: true,
                                     controller: _controller,
-                                    autofocus: true,
-                                    keyboardType: TextInputType.number,
-                                    decoration: const InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Enter your phone number',
+                                    child: TextField(
+                                      controller: _controller,
+                                      autofocus: true,
+                                      keyboardType: TextInputType.number,
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'Enter your phone number',
+                                      ),
                                     ),
-                                  ),
                                   // inputFormatters: [
                                   //   FilteringTextInputFormatter.deny(RegExp('123')),
                                   //   FilteringTextInputFormatter.deny(RegExp(r'[/\\]'))
@@ -281,13 +280,11 @@ class LoginOtpScreenState extends State<LoginOtpScreen> {
                               onClick: () {
                                 String str = _emailController.text.trim();
                                 print("Email " + str);
-                                if (AppUtils.regexStr(str, Common.REGEX_EMAIL)){
+                                if (AppUtils.regexStr(
+                                    str, Common.REGEX_EMAIL)) {
                                   authBloc.add(AuthenticationEmailRequestOtp(
                                       otpRequest: OtpRequest(email: str)));
-                                }
-                                else{
-
-                                }
+                                } else {}
                               },
                             )
                           ]))

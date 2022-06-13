@@ -16,7 +16,6 @@ class AppDio with DioMixin implements Dio{
 
     this.options = options;
     interceptors.add(InterceptorsWrapper(onRequest: (options, handler) async {
-      // options.headers.addAll(await userAgentClientHintsHeader());
       handler.next(options);
     }));
 

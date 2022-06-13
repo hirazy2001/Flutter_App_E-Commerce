@@ -1,13 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app_e_commerce/src/data/model/product.dart';
 
 class Constants {
   /// CONFIG
   static const String APP_NAME = "Hirazy";
   static const String CHANNEL = "com.example.init_app";
   static const String FACEBOOK_APP_ID = "";
-  static const String BASE_URL = "http://192.168.21.108:9000/api/v1/";
+  static const String BASE_URL = "http://192.168.21.101:9000/api/v1/";
   static const String MASTER_KEY = "zLVkc8QrSynbOOTNvjHH3im7a03etWlS";
   static const String TITLE_SPLASH = "Start your journey with Hirazy";
 
@@ -31,6 +32,12 @@ class Constants {
   /// STRING
   static const String NOTE_OTP_PHONE = "Please note that by creating and/or use user account, you agree to ";
 
+  static const String ITEM_HOME = "Home";
+  static const String ITEM_STREAM = "Stream";
+  static const String ITEM_MESSAGE = "Message";
+  static const String ITEM_CART = "Cart";
+  static const String ITEM_ACCOUNT = "Account";
+
   /// COLOR
   static const Color colorInput = Colors.black26;
 
@@ -38,4 +45,7 @@ class Constants {
   static const String icShow = 'assets/images/ic_show.png';
   static const String icHide = 'assets/images/ic_hide.png';
   static const String icRemove  = 'assets/images/ic_remove/png';
+
+  static const PRODUCT_ITEMS = [
+  ];
 }

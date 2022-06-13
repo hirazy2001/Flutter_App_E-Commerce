@@ -107,7 +107,7 @@ dependencies:
   connectivity_plus: ^2.3.0
 
   # Awesome Notification
-  #  awesome_notifications: ^0.6.18
+  awesome_notifications: ^0.6.21
 
   # Sms Autofill
   sms_autofill: ^2.2.0
@@ -123,6 +123,12 @@ dependencies:
 
   # Flutter Toast
   fluttertoast: ^8.0.9
+
+  # Salomon Bottom Bar
+  salomon_bottom_bar: ^3.3.1
+
+  # SQLite
+  sqflite: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:
@@ -171,6 +177,13 @@ flutter:
     - assets/images/ic_menu.png
     - assets/images/ic_hide.png
     - assets/images/ic_show.png
+    - assets/images/ic_qr.png
+    - assets/images/ic_chat.png
+    - assets/images/ic_chat_active.png
+    - assets/images/ic_cart.png
+    - assets/images/ic_cart_active.png
+    - assets/images/ic_account.png
+    - assets/images/ic_account_active.png
     - assets/raw/anim_loading.json
     - assets/raw/anim_refresh.json
 

@@ -6,7 +6,7 @@ class SettingScreen extends StatefulWidget{
 
   @override
   SettingScreenState createState() {
-    return new SettingScreenState();
+    return SettingScreenState();
   }
 }
 

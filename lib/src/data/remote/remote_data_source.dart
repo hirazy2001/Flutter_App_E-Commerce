@@ -7,11 +7,11 @@ import '../model/response/response_code.dart';
 abstract class RemoteDataSource{
   Future<ResponseCode> login(LoginRequest loginRequest);
 
-  Future<void> authRequestOtp(OtpAuth otpAuth);
+  Future<ResponseCode> authRequestOtp(OtpAuth otpAuth);
 
-  Future<void> requestPhoneOtp(OtpRequest otpRequest);
+  Future<ResponseCode> requestPhoneOtp(OtpRequest otpRequest);
 
-  Future<void> requestEmailOtp(OtpRequest otpRequest);
+  Future<ResponseCode> requestEmailOtp(OtpRequest otpRequest);
 
   Future<void> requestHome();
 

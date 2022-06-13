@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_bloc.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_state.dart';
@@ -20,9 +19,35 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-
+  FocusNode focusNodeUsername = FocusNode();
+  FocusNode focusNodePassword = FocusNode();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool isExpandedSpace = false;
+
+  @override
+  void initState() {
+    super.initState();
+    focusNodeUsername.addListener(() {
+      if (focusNodeUsername.hasFocus) {
+        // setState((){
+        //   isExpandedSpace = false;
+        // });
+      } else {}
+    });
+
+    focusNodePassword.addListener(() {
+      if (focusNodePassword.hasFocus) {
+        setState(() {
+          isExpandedSpace = true;
+        });
+      } else {
+        setState(() {
+          isExpandedSpace = false;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +60,17 @@ class LoginScreenState extends State<LoginScreen> {
       }),
       body: BlocListener<AuthenticationBloc, AuthenticationState>(
         listener: (context, state) {
-          if (state is AuthenticatedState) {
+          if (state is AuthenticationLoading) {
             DialogLoading.showDialogLoading(context);
-            Navigator.pushNamed(context, SignUpScreen.routeName, arguments: _usernameController.text);
+            Navigator.pushNamed(context, SignUpScreen.routeName,
+                arguments: _usernameController.text);
           } else if (state is UnAuthenticatedState) {
             Navigator.pop(context);
+            Navigator.pushNamed(context, SignUpScreen.routeName,
+                arguments: _usernameController.text);
+          }
+          else if(state is AuthenticatedState){
+
           }
         },
         child: SafeArea(
@@ -74,10 +105,11 @@ class LoginScreenState extends State<LoginScreen> {
                           decoration: const BoxDecoration(
                               color: Colors.black12,
                               borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
+                                  BorderRadius.all(Radius.circular(10))),
                           child: Container(
                             margin: const EdgeInsets.only(left: 15),
                             child: TextField(
+                              focusNode: focusNodeUsername,
                               controller: _usernameController,
                               decoration: const InputDecoration(
                                   border: InputBorder.none,
@@ -91,17 +123,25 @@ class LoginScreenState extends State<LoginScreen> {
                             decoration: const BoxDecoration(
                                 color: Colors.black12,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Container(
                               margin: const EdgeInsets.only(left: 15),
                               child: TextField(
+                                focusNode: focusNodePassword,
                                 controller: _passwordController,
                                 decoration: const InputDecoration(
                                     border: InputBorder.none,
                                     hintStyle: TextStyle(color: Colors.black26),
                                     hintText: "Password"),
                               ),
-                            ))
+                            )),
+                        isExpandedSpace
+                            ? const SizedBox(
+                                height: 15,
+                              )
+                            : const SizedBox(
+                                height: 0,
+                              )
                       ]),
                   Positioned(
                       left: 0,
@@ -125,7 +165,7 @@ class LoginScreenState extends State<LoginScreen> {
                             onTap: () {},
                           ),
                           const SizedBox(
-                            height: 15,
+                            height: 8,
                           ),
                           ButtonMaterial(
                               text: "Log in",

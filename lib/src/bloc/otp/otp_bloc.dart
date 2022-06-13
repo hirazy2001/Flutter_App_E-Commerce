@@ -6,6 +6,11 @@ import 'package:flutter_app_e_commerce/src/data/data_repository.dart';
 import '../../common/locator.dart';
 
 class OtpBloc extends Bloc<OtpEvent, OtpState> {
+
+  final int _sentCode = 202;
+  final int _errorCode = 400;
+  final int _serverErrorCode = 500;
+
   OtpBloc() : super(OtpState()) {
     on<OtpRequestEmail>(_onRequestEmail);
     on<OtpRequestPhone>(_onRequestPhone);
@@ -18,6 +23,12 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
 
     emitter(OtpRequest());
     var data = await _dataRepository.requestEmailOtp(event.otpRequest);
+    if(data.code == _sentCode){
+
+    }
+    else{
+
+    }
     emitter(OtpRequest());
   }
 
@@ -27,7 +38,9 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
 
   void _onAuthOtp(OtpAuthEvent event, Emitter<OtpState> emitter) async {
     emitter(OtpRequest());
+    print("Hello 123");
     await _dataRepository.authOtp(event.otpAuth);
+    print("Hello 1234");
     emitter(OtpAuthSuccess());
   }
 }

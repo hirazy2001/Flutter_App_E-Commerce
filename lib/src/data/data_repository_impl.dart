@@ -3,9 +3,6 @@ import 'package:flutter_app_e_commerce/src/data/model/request/otp_auth.dart';
 import 'package:flutter_app_e_commerce/src/data/model/request/otp_request.dart';
 import 'package:flutter_app_e_commerce/src/data/model/response/response_code.dart';
 import 'package:flutter_app_e_commerce/src/data/remote/remote_data_source.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../main.dart';
 import '../common/locator.dart';
 import 'local/preference.dart';
 import 'model/request/login_request.dart';
@@ -35,7 +32,7 @@ class DataRepositoryImpl implements DataRepository {
   }
 
   @override
-  Future<ResponseCode> login(LoginRequest request) async{
+  Future<ResponseCode> login(LoginRequest request) async {
     return await _remoteDataSource.login(request);
   }
 
@@ -50,27 +47,28 @@ class DataRepositoryImpl implements DataRepository {
   }
 
   @override
-  Future<void> signInFacebook() async {
+  Future<void> signInFacebook() async {}
+
+  @override
+  Future<void> signInGoogle() async {}
+
+  @override
+  Future<ResponseCode> requestEmailOtp(OtpRequest otpRequest) async {
+    return await _remoteDataSource.requestEmailOtp(otpRequest);
   }
 
   @override
-  Future<void> signInGoogle() async {
+  Future<ResponseCode> requestPhoneOtp(OtpRequest otpRequest) async {
+    return await _remoteDataSource.requestPhoneOtp(otpRequest);
   }
 
   @override
-  Future<void> requestEmailOtp(OtpRequest otpRequest) async {
-    print("REQUEST OTP EMAIL");
-    await _remoteDataSource.requestEmailOtp(otpRequest);
+  Future<ResponseCode> authOtp(OtpAuth otpAuth) async {
+    return await _remoteDataSource.authRequestOtp(otpAuth);
   }
 
   @override
-  Future<void> requestPhoneOtp(OtpRequest otpRequest) async{
-    print("REQUEST OTP PHONE");
-    await _remoteDataSource.requestPhoneOtp(otpRequest);
-  }
-
-  @override
-  Future<void> authOtp(OtpAuth otpAuth) async{
-    await _remoteDataSource.authRequestOtp(otpAuth);
+  Future<void> setToken(String token) async{
+    return await _preferences.setToken(token);
   }
 }

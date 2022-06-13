@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_event.dart';
 import 'package:flutter_app_e_commerce/src/data/model/request/register_request.dart';
@@ -10,10 +9,9 @@ import '../../common/constants.dart';
 import '../../widgets/app_bar_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
-
   String emailOrPhone;
 
-  SignUpScreen({Key? key, required this.emailOrPhone}): super(key: key);
+  SignUpScreen({Key? key, required this.emailOrPhone}) : super(key: key);
 
   static const String routeName = "/signup";
 
@@ -24,7 +22,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class SignUpScreenState extends State<SignUpScreen> {
-
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -32,12 +29,11 @@ class SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     var authBloc = BlocProvider.of<AuthenticationBloc>(context);
 
-    return Scaffold(
-        appBar: appBar(() {
-
-        }),
-        body: SafeArea(
-            child: Container(
+    return SafeArea(
+        child: Scaffold(
+            backgroundColor: Colors.white,
+            appBar: appBar(() {}),
+            body: Container(
               margin: const EdgeInsets.all(20),
               child: Stack(
                 children: [
@@ -64,7 +60,6 @@ class SignUpScreenState extends State<SignUpScreen> {
                         ),
                         child: Row(
                           children: [
-                            TextFormField(),
                             InkWell(
                               onTap: () {},
                               child: Container(
@@ -144,7 +139,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                                           color: Colors.blue)),
                                   TextSpan(
                                       text:
-                                      "and my private data is process with Hirazy",
+                                          "and my private data is process with Hirazy",
                                       style: TextStyle(
                                           fontSize: 13,
                                           fontWeight: FontWeight.w400,
@@ -161,14 +156,19 @@ class SignUpScreenState extends State<SignUpScreen> {
                           ButtonMaterial(
                               text: "Accept and Create Account",
                               onClick: () {
-                                String username = _usernameController.text.trim();
-                                String password = _passwordController.text.trim();
-                                if(true){
-
-                                }
-                                else{
-                                  authBloc.add(
-                                      RegisterEvent(request: RegisterRequest(
+                                String username =
+                                    _usernameController.text.trim();
+                                String password =
+                                    _passwordController.text.trim();
+                                if (true) {
+                                  authBloc.add(RegisterEvent(
+                                      request: RegisterRequest(
+                                          nameOrEmail: widget.emailOrPhone,
+                                          username: username,
+                                          password: password)));
+                                } else {
+                                  authBloc.add(RegisterEvent(
+                                      request: RegisterRequest(
                                           nameOrEmail: widget.emailOrPhone,
                                           username: username,
                                           password: password)));
