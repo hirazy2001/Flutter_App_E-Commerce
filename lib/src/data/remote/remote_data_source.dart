@@ -13,6 +13,8 @@ abstract class RemoteDataSource{
 
   Future<ResponseCode> requestEmailOtp(OtpRequest otpRequest);
 
+  Future<ResponseCode> requestHomeProducts();
+
   Future<void> requestHome();
 
   Future<void> logout();

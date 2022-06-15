@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_state.dart';
 import 'package:flutter_app_e_commerce/src/screens/authentication/authentication_screen.dart';
-import 'package:flutter_app_e_commerce/src/screens/home/home_screen.dart';
-import 'package:flutter_app_e_commerce/src/screens/login/login_screen.dart';
+import 'package:flutter_app_e_commerce/src/screens/tab/tab_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -63,10 +62,9 @@ class SplashScreenState extends State<SplashScreen> {
 
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
-        if(state is AuthenticatedState){
-          Navigator.popAndPushNamed(context, HomeScreen.routeName);
-        }
-        else{
+        if (state is AuthenticatedState) {
+          Navigator.popAndPushNamed(context, TabScreen.routeName);
+        } else {
           Navigator.popAndPushNamed(context, AuthenticationScreen.routeName);
         }
       },

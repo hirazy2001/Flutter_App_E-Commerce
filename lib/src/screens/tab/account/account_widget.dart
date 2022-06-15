@@ -12,6 +12,16 @@ class AccountWidgetState extends State<AccountWidget>{
 
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return Scaffold(
+      body: Center(
+        child: Text(
+          "Account",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w400
+          ),
+        ),
+      ),
+    );
   }
 }

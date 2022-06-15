@@ -112,6 +112,11 @@ class RemoteData implements RemoteDataSource {
   }
 
   @override
+  Future<ResponseCode> requestHomeProducts() {
+    throw UnimplementedError();
+  }
+
+  @override
   Future<void> requestHome() {
     throw UnimplementedError();
   }

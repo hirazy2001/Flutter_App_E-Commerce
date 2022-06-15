@@ -130,6 +130,9 @@ dependencies:
   # SQLite
   sqflite: ^2.0.2+1
 
+  # Cache Network Image
+  cached_network_image: ^3.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -176,7 +179,10 @@ flutter:
     - assets/images/ic_back.png
     - assets/images/ic_menu.png
     - assets/images/ic_hide.png
+    - assets/images/ic_home.png
+    - assets/images/ic_home_active.png
     - assets/images/ic_show.png
+    - assets/images/ic_camera.png
     - assets/images/ic_qr.png
     - assets/images/ic_chat.png
     - assets/images/ic_chat_active.png
@@ -184,6 +190,15 @@ flutter:
     - assets/images/ic_cart_active.png
     - assets/images/ic_account.png
     - assets/images/ic_account_active.png
+    - assets/images/ic_appliances.png
+    - assets/images/ic_beauty.png
+    - assets/images/ic_search.png
+    - assets/images/ic_electronics.png
+    - assets/images/ic_furniture.png
+    - assets/images/ic_fashion.png
+    - assets/images/ic_phone.png
+    - assets/images/ic_clock.png
+    - assets/images/ic_motorbike.png
     - assets/raw/anim_loading.json
     - assets/raw/anim_refresh.json
 

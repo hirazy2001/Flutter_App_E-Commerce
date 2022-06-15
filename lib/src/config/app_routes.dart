@@ -1,13 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_e_commerce/src/screens/home/home_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/login/login_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/login_otp/login_otp_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/otp/otp_screen.dart';
+import 'package:flutter_app_e_commerce/src/screens/search_products/search_product_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/setting/setting_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/splash/splash_screen.dart';
+import 'package:flutter_app_e_commerce/src/screens/tab/search_products/search_products_widget.dart';
+import 'package:flutter_app_e_commerce/src/screens/tab/tab_screen.dart';
 
 import '../data/model/arguments/otp_argument.dart';
 import '../screens/authentication/authentication_screen.dart';
@@ -20,10 +21,10 @@ class AppRoutes {
             builder: (context) => OnBoardingScreen(),
             settings: const RouteSettings(name: OnBoardingScreen.routeName));
 
-      case HomeScreen.routeName:
+      case TabScreen.routeName:
         return MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-            settings: const RouteSettings(name: HomeScreen.routeName));
+            builder: (context) => TabScreen(),
+            settings: const RouteSettings(name: TabScreen.routeName));
       case AuthenticationScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => AuthenticationScreen(),
@@ -61,10 +62,16 @@ class AppRoutes {
             settings: const RouteSettings(name: SignUpScreen.routeName)
         );
 
+      case SearchProductScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => const SearchProductScreen(),
+            settings: const RouteSettings(name: SearchProductScreen.routeName)
+        );
+
       default:
         return MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-            settings: const RouteSettings(name: HomeScreen.routeName));
+            builder: (context) => TabScreen(),
+            settings: const RouteSettings(name: TabScreen.routeName));
     }
   }
 }

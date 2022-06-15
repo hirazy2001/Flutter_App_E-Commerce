@@ -26,6 +26,8 @@ abstract class DataRepository {
 
   Future<void> signInGoogle();
 
+  Future<ResponseCode> requestHomeProducts();
+
   Future<ResponseCode> requestPhoneOtp(OtpRequest otpRequest);
 
   Future<ResponseCode> requestEmailOtp(OtpRequest otpRequest);

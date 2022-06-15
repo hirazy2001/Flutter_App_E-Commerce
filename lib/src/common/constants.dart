@@ -41,6 +41,9 @@ class Constants {
   /// COLOR
   static const Color colorInput = Colors.black26;
 
+  /// SIZE
+  static const double SIZE_ITEM_NAV = 22;
+
   /// IMAGE
   static const String icShow = 'assets/images/ic_show.png';
   static const String icHide = 'assets/images/ic_hide.png';

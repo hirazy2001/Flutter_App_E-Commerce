@@ -12,9 +12,4 @@ void setupLocator() {
   locator.registerLazySingleton<Preference>(() => PreferenceImpl());
   locator.registerLazySingleton<DataRepository>(() => DataRepositoryImpl());
   locator.registerLazySingleton<RemoteDataSource>(() => RemoteData());
-  // locator.registerLazySingleton(() => UserRepository());
-  // locator.registerLazySingleton(() => FirestoreDBService());
-  // locator.registerLazySingleton(() => NotificationService());
-  // locator.registerLazySingleton(() => FirebaseStorageService());
-  // locator.registerLazySingleton(() => SharedPrefManager());
 }

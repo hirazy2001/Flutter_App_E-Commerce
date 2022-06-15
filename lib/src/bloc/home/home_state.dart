@@ -11,11 +11,11 @@ class LoadingState extends HomeState{
   const LoadingState();
 }
 
-class HomeRefreshFailedState extends HomeState{
-  const HomeRefreshFailedState();
+class HomeLoadFailedState extends HomeState{
+  const HomeLoadFailedState();
 }
 
-class HomeRefreshSuccessState extends HomeState{
-  const HomeRefreshSuccessState();
+class HomeLoadSuccessState extends HomeState{
+  const HomeLoadSuccessState();
 }
 

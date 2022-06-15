@@ -71,4 +71,9 @@ class DataRepositoryImpl implements DataRepository {
   Future<void> setToken(String token) async{
     return await _preferences.setToken(token);
   }
+
+  @override
+  Future<ResponseCode> requestHomeProducts() async{
+    return await _remoteDataSource.requestHomeProducts();
+  }
 }
