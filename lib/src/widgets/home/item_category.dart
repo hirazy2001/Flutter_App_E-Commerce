@@ -15,7 +15,7 @@ class ItemCategoryWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.only(left: 8, bottom: 8, right: 8),
+        padding: const EdgeInsets.only(left: 8, right: 8),
         child: Column(
           children: [
             Container(

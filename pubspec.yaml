@@ -133,6 +133,15 @@ dependencies:
   # Cache Network Image
   cached_network_image: ^3.2.1
 
+  # Sliding Up Panel
+  sliding_up_panel: ^2.0.0+1
+
+  # Carousel Slider
+  carousel_slider: ^4.1.1
+
+  # Rating Bar
+  flutter_rating_bar: ^4.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -165,40 +174,44 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/nation/
     - assets/fonts/
     - assets/audio/
     - assets/svg/
     - assets/raw/
-    - assets/images/ic_github.png
-    - assets/images/slider_1.png
-    - assets/images/slider_2.png
-    - assets/images/slider_3.png
-    - assets/images/ic_google.png
-    - assets/images/ic_facebook.png
-    - assets/images/nation/ic_vietnam.png
-    - assets/images/ic_back.png
-    - assets/images/ic_menu.png
-    - assets/images/ic_hide.png
-    - assets/images/ic_home.png
-    - assets/images/ic_home_active.png
-    - assets/images/ic_show.png
-    - assets/images/ic_camera.png
-    - assets/images/ic_qr.png
-    - assets/images/ic_chat.png
-    - assets/images/ic_chat_active.png
-    - assets/images/ic_cart.png
-    - assets/images/ic_cart_active.png
-    - assets/images/ic_account.png
-    - assets/images/ic_account_active.png
-    - assets/images/ic_appliances.png
-    - assets/images/ic_beauty.png
-    - assets/images/ic_search.png
-    - assets/images/ic_electronics.png
-    - assets/images/ic_furniture.png
-    - assets/images/ic_fashion.png
-    - assets/images/ic_phone.png
-    - assets/images/ic_clock.png
-    - assets/images/ic_motorbike.png
+#    - images/
+#    - assets/images/*.png
+#    - assets/images/ic_github.png
+#    - assets/images/slider_1.png
+#    - assets/images/slider_2.png
+#    - assets/images/slider_3.png
+#    - assets/images/ic_google.png
+#    - assets/images/ic_facebook.png
+#    - assets/images/nation/ic_vietnam.png
+#    - assets/images/ic_back.png
+#    - assets/images/ic_menu.png
+#    - assets/images/ic_hide.png
+#    - assets/images/ic_home.png
+#    - assets/images/ic_home_active.png
+#    - assets/images/ic_show.png
+#    - assets/images/ic_camera.png
+#    - assets/images/ic_qr.png
+#    - assets/images/ic_chat.png
+#    - assets/images/ic_chat_active.png
+#    - assets/images/ic_cart.png
+#    - assets/images/ic_cart_active.png
+#    - assets/images/ic_account.png
+#    - assets/images/ic_account_active.png
+#    - assets/images/ic_appliances.png
+#    - assets/images/ic_beauty.png
+#    - assets/images/ic_search.png
+#    - assets/images/ic_electronics.png
+#    - assets/images/ic_furniture.png
+#    - assets/images/ic_fashion.png
+#    - assets/images/ic_phone.png
+#    - assets/images/ic_clock.png
+#    - assets/images/ic_motorbike.png
+#    - assets/images/ic_star_rating.png
     - assets/raw/anim_loading.json
     - assets/raw/anim_refresh.json
 

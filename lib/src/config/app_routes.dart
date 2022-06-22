@@ -3,6 +3,7 @@ import 'package:flutter_app_e_commerce/src/screens/login/login_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/login_otp/login_otp_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/onboarding/onboarding_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/otp/otp_screen.dart';
+import 'package:flutter_app_e_commerce/src/screens/product_detail/product_detail_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/search_products/search_product_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/setting/setting_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/sign_up/sign_up_screen.dart';
@@ -66,6 +67,12 @@ class AppRoutes {
         return MaterialPageRoute(
             builder: (context) => const SearchProductScreen(),
             settings: const RouteSettings(name: SearchProductScreen.routeName)
+        );
+
+      case ProductDetailScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(productId: settings.arguments as String),
+            settings: const RouteSettings(name: ProductDetailScreen.routeName)
         );
 
       default:

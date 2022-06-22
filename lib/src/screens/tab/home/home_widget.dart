@@ -1,5 +1,7 @@
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_e_commerce/src/data/model/product.dart';
+import 'package:flutter_app_e_commerce/src/screens/product_detail/product_detail_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/search_products/search_product_screen.dart';
 import 'package:flutter_app_e_commerce/src/widgets/home/card_product.dart';
 import 'package:flutter_app_e_commerce/src/widgets/home/item_category.dart';
@@ -70,15 +72,13 @@ class HomeWidgetState extends State<HomeWidget> {
                           child: GestureDetector(
                             onTap: () {},
                             child: Container(
-                              padding: const EdgeInsets.all(10),
-                              child: const Text(
-                                "Search Products",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500
-                                ),
-                              )
-                            ),
+                                padding: const EdgeInsets.all(10),
+                                child: const Text(
+                                  "Search Products",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
+                                )),
                           ),
                         )),
                         Container(
@@ -127,9 +127,82 @@ class HomeWidgetState extends State<HomeWidget> {
           ),
         ),
         Expanded(
+            child: CustomRefreshIndicator(
+          builder: (BuildContext context, Widget child,
+              IndicatorController controller) {
+            return SingleChildScrollView(
+                child: Container(
+                  color: const Color.fromARGB(100, 227, 227, 227),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 10, right: 10),
+                        child: Row(
+                          children: [
+                            const Text(
+                              "Categories",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17),
+                            ),
+                            InkWell(
+                                onTap: () {},
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: const Text(
+                                      "View All →",
+                                      style: TextStyle(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15),
+                                    ),
+                                  ),
+                                ))
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                          height: 120,
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: itemCategories.map((e) {
+                              return ItemCategoryWidget(
+                                  itemCategory: e,
+                                  onTap: () {
+                                    // Navigator.pushNamed(context, );
+                                  });
+                            }).toList(),
+                            scrollDirection: Axis.horizontal,
+                          )),
+                      StaggeredGrid.count(
+                        crossAxisCount: 2,
+                        children: products.map((e) {
+                          return CardProduct(product: e, onClick: (){
+                            Navigator.pushNamed(context, ProductDetailScreen.routeName,
+                                arguments: e.id);
+                          },);
+                        }).toList(),
+                      )
+                    ],
+                  ),
+                ));
+          },
+          onRefresh: () async{
+
+          },
           child: SingleChildScrollView(
               child: Container(
-            color: Colors.white54,
+            color: const Color.fromARGB(100, 227, 227, 227),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -181,16 +254,18 @@ class HomeWidgetState extends State<HomeWidget> {
                       }).toList(),
                       scrollDirection: Axis.horizontal,
                     )),
-                  StaggeredGrid.count(
-                    crossAxisCount: 2,
-                    children: products.map((e){
-                      return CardProduct(product: e);
-                    }).toList(),
-                  )
+                StaggeredGrid.count(
+                  crossAxisCount: 2,
+                  children: products.map((e) {
+                    return CardProduct(product: e, onClick: (){
+
+                    },);
+                  }).toList(),
+                )
               ],
             ),
           )),
-        )
+        ))
 
         // LayoutBuilder(builder:
         //     (BuildContext context, BoxConstraints viewportConstraints) {

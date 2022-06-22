@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/authentication/authentication_event.dart';
 import '../../data/model/request/login_request.dart';
 import '../../widgets/dialog_loading.dart';
+import '../tab/tab_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = "/login";
@@ -62,11 +63,11 @@ class LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {
           if (state is AuthenticationLoading) {
             DialogLoading.showDialogLoading(context);
-            Navigator.pushNamed(context, SignUpScreen.routeName,
+            Navigator.pushNamed(context, TabScreen.routeName,
                 arguments: _usernameController.text);
           } else if (state is UnAuthenticatedState) {
             Navigator.pop(context);
-            Navigator.pushNamed(context, SignUpScreen.routeName,
+            Navigator.pushNamed(context, TabScreen.routeName,
                 arguments: _usernameController.text);
           }
           else if(state is AuthenticatedState){

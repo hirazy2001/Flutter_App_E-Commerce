@@ -82,7 +82,7 @@ class AuthenticationScreenState extends State<AuthenticationScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 10),
+                        margin: const EdgeInsets.only(left: 10),
                         child: Image.asset(
                           'assets/images/nation/ic_vietnam.png',
                           width: 30,

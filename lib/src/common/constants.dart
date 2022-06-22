@@ -48,7 +48,12 @@ class Constants {
   static const String icShow = 'assets/images/ic_show.png';
   static const String icHide = 'assets/images/ic_hide.png';
   static const String icRemove  = 'assets/images/ic_remove/png';
+  static const String icShare = 'assets/images/ic_share.png';
+  static const String icUnFavorite = 'assets/images/ic_unfavorite.png';
+  static const String icFavorite = 'assets/images/ic_favorite.png';
+  static const String icStarRating = "assets/images/ic_star_rating.png";
 
   static const PRODUCT_ITEMS = [
+    "https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-9/142915405_106600208107240_8287176908190349092_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=cC0pk4MenwsAX9oOapY&_nc_ht=scontent.fhan2-4.fna&oh=00_AT8wDaK0sjSH5Z3gxmHkGYotDquO_PJln2iIcqpbe7_TqA&oe=62D54506"
   ];
 }
