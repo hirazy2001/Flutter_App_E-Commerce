@@ -39,11 +39,35 @@ class Product {
 List<Product> products = [
   Product(
       id: "1",
-      name: "Hello",
+      name: "Balo 1",
       shop: "shop",
       image: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
       images: [],
       reviews: [
+        Review(
+            userId: "12212",
+            userName: "GG",
+            rating: 5,
+            content: "OK san pham nhu cc",
+            picture: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
+            createdAt: DateTime.now()
+        ),
+        Review(
+            userId: "12212",
+            userName: "GG",
+            rating: 5,
+            content: "OK san pham nhu cc",
+            picture: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
+            createdAt: DateTime.now()
+        ),
+        Review(
+            userId: "12212",
+            userName: "GG",
+            rating: 5,
+            content: "OK san pham nhu cc",
+            picture: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
+            createdAt: DateTime.now()
+        ),
         Review(
             userId: "12212",
             userName: "GG",
@@ -58,7 +82,7 @@ List<Product> products = [
       price: "35"),
   Product(
       id: "1",
-      name: "Hello",
+      name: "Ao phong 1",
       shop: "shop",
       sold: 40,
       image: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
@@ -77,7 +101,7 @@ List<Product> products = [
       price: "35"),
   Product(
       id: "1",
-      name: "Hello",
+      name: "Balo 2",
       shop: "shop",
       image: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
       images: [],
@@ -96,7 +120,7 @@ List<Product> products = [
       price: "35"),
   Product(
       id: "1",
-      name: "Hello",
+      name: "Ao phong 2",
       shop: "shop",
       image: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
       images: [],
@@ -115,7 +139,7 @@ List<Product> products = [
       price: "35"),
   Product(
       id: "1",
-      name: "Hello",
+      name: "Balo 3",
       shop: "shop",
       image: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
       images: [],

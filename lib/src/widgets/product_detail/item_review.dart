@@ -9,15 +9,19 @@ class ItemReview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      child: Row(
+    return Row(
         children: [
-          Image.network(review.picture),
+          Container(
+            child: CircleAvatar(
+              radius: 20,
+              backgroundImage: NetworkImage(review.picture),
+            ),
+          ),
           const SizedBox(
             width: 10,
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 review.userName,
@@ -31,7 +35,7 @@ class ItemReview extends StatelessWidget {
                   Icons.star,
                   color: Colors.amber,
                 ),
-                rating: review.rating as double,
+                rating: review.rating.toDouble(),
                 itemCount: 5,
                 itemSize: 14,
               ),
@@ -48,7 +52,6 @@ class ItemReview extends StatelessWidget {
             ],
           )
         ],
-      ),
     );
   }
 }

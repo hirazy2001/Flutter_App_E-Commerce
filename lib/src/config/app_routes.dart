@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_e_commerce/src/screens/chat/chat_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/login/login_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/login_otp/login_otp_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/onboarding/onboarding_screen.dart';
@@ -72,6 +73,12 @@ class AppRoutes {
       case ProductDetailScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => ProductDetailScreen(productId: settings.arguments as String),
+            settings: const RouteSettings(name: ProductDetailScreen.routeName)
+        );
+
+      case ChatScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => ChatScreen(roomId: settings.arguments as String),
             settings: const RouteSettings(name: ProductDetailScreen.routeName)
         );
 

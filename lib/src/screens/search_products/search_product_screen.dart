@@ -17,7 +17,9 @@ class SearchProductScreenState extends State<SearchProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        children: [
 
+        ],
       ),
     );
   }

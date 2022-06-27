@@ -1,27 +1,19 @@
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 
-class AccountWidget extends StatefulWidget{
-
+class AccountWidget extends StatefulWidget {
   @override
   AccountWidgetState createState() {
     return AccountWidgetState();
   }
 }
 
-class AccountWidgetState extends State<AccountWidget>{
-
+class AccountWidgetState extends State<AccountWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(
-          "Account",
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w400
-          ),
-        ),
-      ),
-    );
+        body: CustomScrollView(
+      slivers: [SliverAppBar()],
+    ));
   }
 }
