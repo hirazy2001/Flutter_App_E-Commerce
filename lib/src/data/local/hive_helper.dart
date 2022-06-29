@@ -4,4 +4,7 @@ import 'package:hive/hive.dart';
 class HiveHelper{
   static Box<HiveModel> getTransactions() =>
       Hive.box<HiveModel>('hive_model');
+
+  static Future<void> deleteTransaction()
+    => Hive.box<HiveModel>('hive_model').delete('');
 }

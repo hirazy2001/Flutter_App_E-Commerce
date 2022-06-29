@@ -8,3 +8,7 @@ class ProductEvent extends Equatable{
 class ProductLoadingEvent extends ProductEvent{
 
 }
+
+class ProductLoadMoreEvent extends ProductEvent{
+
+}

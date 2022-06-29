@@ -10,7 +10,7 @@ class Constants {
   static const String FACEBOOK_APP_ID = "";
   static const String BASE_URL = "http://192.168.21.101:9000/api/v1/";
   static const String MASTER_KEY = "zLVkc8QrSynbOOTNvjHH3im7a03etWlS";
-  static const String TITLE_SPLASH = "Start your journey with Hirazy";
+  static const String TITLE_SPLASH = "Start your shopping with Hirazy";
 
   /// FONTS
   static const String FONT_LAPSUS_PRO = "LapsusPro";
@@ -30,7 +30,8 @@ class Constants {
   static const String SLIDER_DESC3 = "Hello 123";
 
   /// STRING
-  static const String NOTE_OTP_PHONE = "Please note that by creating and/or use user account, you agree to ";
+  static const String NOTE_OTP_PHONE =
+      "Please note that by creating and/or use user account, you agree to ";
 
   static const String ITEM_HOME = "Home";
   static const String ITEM_STREAM = "Stream";
@@ -44,10 +45,18 @@ class Constants {
   /// SIZE
   static const double SIZE_ITEM_NAV = 22;
 
+  /// GRADIENT TEXT
+  static Shader shaderGradient =
+      const LinearGradient(colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)])
+          .createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+
+  /// TEXT HTML GENDER DESCRIPTION
+  static const String FILE_HTML_PRODUCT = "";
+
   /// IMAGE
   static const String icShow = 'assets/images/ic_show.png';
   static const String icHide = 'assets/images/ic_hide.png';
-  static const String icRemove  = 'assets/images/ic_remove/png';
+  static const String icRemove = 'assets/images/ic_remove/png';
   static const String icShare = 'assets/images/ic_share.png';
   static const String icUnFavorite = 'assets/images/ic_unfavorite.png';
   static const String icFavorite = 'assets/images/ic_favorite.png';

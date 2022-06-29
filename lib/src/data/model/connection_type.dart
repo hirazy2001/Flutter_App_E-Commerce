@@ -3,5 +3,5 @@ enum ConnectionType{
 
   mobile,
 
-
+  no_internet
 }

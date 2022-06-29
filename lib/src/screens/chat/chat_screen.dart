@@ -83,10 +83,13 @@ class ChatScreenState extends State<ChatScreen> {
                 onTap: (){
 
                 },
-                child: const Image(
-                  image: AssetImage(
-                      ""
-                  ),
+                child: Container(
+                  padding: const EdgeInsets.all(5),
+                  child: const Image(
+                    image: AssetImage(
+                        "assets/images/ic_back.png"
+                    ),
+                  )
                 ),
               )
             ],

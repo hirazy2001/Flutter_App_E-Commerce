@@ -7,7 +7,9 @@ import 'package:flutter_app_e_commerce/src/screens/chat/chat_screen.dart';
 import 'package:flutter_app_e_commerce/src/widgets/product_detail/bottom_sheet_detail.dart';
 import 'package:flutter_app_e_commerce/src/widgets/product_detail/item_review.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../bloc/product/product_event.dart';
@@ -27,6 +29,9 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class ProductDetailScreenState extends State<ProductDetailScreen> {
+
+  final ScrollController _scrollList = ScrollController();
+
   @override
   void initState() {}
 
@@ -35,7 +40,9 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
     var authBloc = BlocProvider.of<AuthenticationBloc>(context);
 
     return BlocProvider<ProductBloc>(
-      create: (context) => ProductBloc()..add(ProductLoadingEvent()),
+      create: (context) =>
+      ProductBloc()
+        ..add(ProductLoadingEvent()),
       child: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
           if (state is ProductLoadedSuccessState) {
@@ -59,282 +66,346 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                           // ),
                           Expanded(
                               child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Stack(
+                                controller: _scrollList,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    CarouselSlider.builder(
-                                      itemCount: 1,
-                                      itemBuilder:
-                                          (context, itemIndex, pageViewIndex) =>
+                                    Stack(
+                                      children: [
+                                        CarouselSlider.builder(
+                                          itemCount: 1,
+                                          itemBuilder:
+                                              (context, itemIndex,
+                                              pageViewIndex) =>
                                               Container(
-                                        padding: const EdgeInsets.all(5),
-                                        child: Image.network(
-                                            Constants.PRODUCT_ITEMS[itemIndex]),
-                                      ),
-                                      options: CarouselOptions(
-                                        aspectRatio: 16 / 9,
-                                        viewportFraction: 0.8,
-                                        initialPage: 0,
-                                        enableInfiniteScroll: true,
-                                        reverse: false,
-                                        autoPlayInterval:
+                                                padding: const EdgeInsets.all(
+                                                    5),
+                                                child: Image.network(
+                                                    Constants
+                                                        .PRODUCT_ITEMS[itemIndex]),
+                                              ),
+                                          options: CarouselOptions(
+                                            aspectRatio: 16 / 9,
+                                            viewportFraction: 0.8,
+                                            initialPage: 0,
+                                            enableInfiniteScroll: true,
+                                            reverse: false,
+                                            autoPlayInterval:
                                             const Duration(seconds: 3),
-                                        autoPlayAnimationDuration:
+                                            autoPlayAnimationDuration:
                                             const Duration(milliseconds: 800),
-                                        autoPlayCurve: Curves.fastOutSlowIn,
-                                      ),
+                                            autoPlayCurve: Curves.fastOutSlowIn,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                Container(
-                                  margin:
+                                    Container(
+                                      margin:
                                       const EdgeInsets.only(left: 8, right: 8),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                          child: Text(state.product.price)),
-                                      Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Row(
-                                          children: [
-                                            InkWell(
-                                              onTap: () {},
-                                              child: Container(
-                                                constraints:
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .center,
+                                        children: [
+                                          Expanded(
+                                              child: Text(state.product.price)),
+                                          Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Row(
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {},
+                                                  child: Container(
+                                                    constraints:
                                                     const BoxConstraints(
                                                         maxHeight: 25,
                                                         maxWidth: 25),
-                                                child: const Image(
-                                                  width: 20,
-                                                  height: 20,
-                                                  image: AssetImage(
-                                                      "assets/images/ic_unfavorite.png"),
+                                                    child: const Image(
+                                                      width: 20,
+                                                      height: 20,
+                                                      image: AssetImage(
+                                                          "assets/images/ic_unfavorite.png"),
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 8,
-                                            ),
-                                            InkWell(
-                                                onTap: () {},
-                                                child: Container(
-                                                  constraints:
+                                                const SizedBox(
+                                                  width: 8,
+                                                ),
+                                                InkWell(
+                                                    onTap: () {},
+                                                    child: Container(
+                                                      constraints:
                                                       const BoxConstraints(
                                                           maxHeight: 25,
                                                           maxWidth: 25),
-                                                  child: const Image(
-                                                    width: 22,
-                                                    height: 22,
-                                                    image: AssetImage(
-                                                        "assets/images/ic_share.png"),
-                                                  ),
-                                                )),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin:
-                                      const EdgeInsets.only(top: 5, left: 8),
-                                  child: Text(
-                                    state.product.name!,
-                                    textAlign: TextAlign.start,
-                                    maxLines: 2,
-                                    style: const TextStyle(
-                                        overflow: TextOverflow.ellipsis,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20),
-                                  ),
-                                ),
-                                Container(
-                                    margin: const EdgeInsets.only(
-                                        top: 10, left: 10, right: 10),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          padding:
-                                              const EdgeInsets.only(right: 30),
-                                          child: Row(
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(children: [
-                                                  TextSpan(
-                                                      text:
-                                                          '${state.product.rating}',
-                                                      style: const TextStyle(
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontSize: 14)),
-                                                  const TextSpan(
-                                                      text: '/5',
-                                                      style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w200,
-                                                          fontSize: 12))
-                                                ]),
-                                              ),
-                                              RatingBarIndicator(
-                                                itemBuilder: (context, index) =>
-                                                    const Icon(
-                                                  Icons.star,
-                                                  color: Colors.amber,
-                                                ),
-                                                rating: state.product.rating,
-                                                itemCount: 5,
-                                                itemSize: 14,
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        RichText(
-                                            text: TextSpan(children: [
-                                          TextSpan(
-                                              text: '${state.product.sold} ',
-                                              style: const TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 14,
-                                              )),
-                                          const TextSpan(
-                                              text: 'Sold',
-                                              style: TextStyle(
-                                                color: Colors.black38,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 12,
-                                              )),
-                                        ]))
-                                      ],
-                                    )),
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                      left: 8, right: 8, top: 15),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                              child: RichText(
-                                            text: TextSpan(children: [
-                                              const TextSpan(
-                                                  text: "Rating and Review",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 15,
-                                                      color: Colors.black)),
-                                              TextSpan(
-                                                  text:
-                                                      " (${state.product.reviews.length})",
-                                                  style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      fontSize: 15,
-                                                      color: Colors.black))
-                                            ]),
-                                          )),
-                                          const Text(
-                                            "See All",
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w300,
-                                                color: Colors.black),
+                                                      child: const Image(
+                                                        width: 22,
+                                                        height: 22,
+                                                        image: AssetImage(
+                                                            "assets/images/ic_share.png"),
+                                                      ),
+                                                    )),
+                                              ],
+                                            ),
                                           )
                                         ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                      left: 8, right: 8, top: 8),
-                                  child: ListView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 10),
-                                        child: ItemReview(
-                                            review:
-                                                state.product.reviews[index]),
-                                      );
-                                    },
-                                    itemCount: state.product.reviews.length,
-                                  ),
-                                ),
-                                Container(
-                                    margin: const EdgeInsets.only(top: 10),
-                                    padding: const EdgeInsets.only(
-                                        top: 10, bottom: 10),
-                                    color: Colors.black12,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: const [
-                                        Center(
-                                            child: Text(
-                                          "Product details",
-                                          style: TextStyle(
-                                              color: Colors.black26,
-                                              fontSize: 14),
-                                        ))
-                                      ],
-                                    )),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                const Divider(
-                                  color: Colors.black38,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    showMaterialModalBottomSheet(
-                                        context: context,
-                                        builder: (context) =>
-                                            const BottomSheetDetail());
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.only(top: 5, bottom: 5),
-                                    child: Row(
-                                      children: const [
-                                        Expanded(
-                                            child: Text(
-                                          "Characteristics",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        )),
-                                        Text(
-                                          "Brand, Models, etc",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              color: Colors.black),
-                                        )
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                    Container(
+                                      margin:
+                                      const EdgeInsets.only(top: 5, left: 8),
+                                      child: Text(
+                                        state.product.name!,
+                                        textAlign: TextAlign.start,
+                                        maxLines: 2,
+                                        style: const TextStyle(
+                                            overflow: TextOverflow.ellipsis,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20),
+                                      ),
+                                    ),
+                                    Container(
+                                        margin: const EdgeInsets.only(
+                                            top: 10, left: 10, right: 10),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              padding:
+                                              const EdgeInsets.only(right: 30),
+                                              child: Row(
+                                                children: [
+                                                  RichText(
+                                                    text: TextSpan(children: [
+                                                      TextSpan(
+                                                          text:
+                                                          '${state.product
+                                                              .rating}',
+                                                          style: const TextStyle(
+                                                              color: Colors
+                                                                  .black,
+                                                              fontWeight:
+                                                              FontWeight.w300,
+                                                              fontSize: 14)),
+                                                      const TextSpan(
+                                                          text: '/5',
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .black,
+                                                              fontWeight:
+                                                              FontWeight.w200,
+                                                              fontSize: 12))
+                                                    ]),
+                                                  ),
+                                                  RatingBarIndicator(
+                                                    itemBuilder: (context,
+                                                        index) =>
+                                                    const Icon(
+                                                      Icons.star,
+                                                      color: Colors.amber,
+                                                    ),
+                                                    rating: state.product
+                                                        .rating,
+                                                    itemCount: 5,
+                                                    itemSize: 14,
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            RichText(
+                                                text: TextSpan(children: [
+                                                  TextSpan(
+                                                      text: '${state.product
+                                                          .sold} ',
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight: FontWeight
+                                                            .w400,
+                                                        fontSize: 14,
+                                                      )),
+                                                  const TextSpan(
+                                                      text: 'Sold',
+                                                      style: TextStyle(
+                                                        color: Colors.black38,
+                                                        fontWeight: FontWeight
+                                                            .w400,
+                                                        fontSize: 12,
+                                                      )),
+                                                ]))
+                                          ],
+                                        )),
+                                    Container(
+                                      margin: const EdgeInsets.only(
+                                          left: 8, right: 8, top: 15),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                  child: RichText(
+                                                    text: TextSpan(children: [
+                                                      const TextSpan(
+                                                          text: "Rating and Review",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize: 15,
+                                                              color: Colors
+                                                                  .black)),
+                                                      TextSpan(
+                                                          text:
+                                                          " (${state.product
+                                                              .reviews
+                                                              .length})",
+                                                          style: const TextStyle(
+                                                              fontWeight:
+                                                              FontWeight.w300,
+                                                              fontSize: 15,
+                                                              color: Colors
+                                                                  .black))
+                                                    ]),
+                                                  )),
+                                              const Text(
+                                                "See All",
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w300,
+                                                    color: Colors.black),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(
+                                          left: 8, right: 8, top: 8),
+                                      child: ListView.builder(
+                                        physics:
+                                        const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                            padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                            child: ItemReview(
+                                                review:
+                                                state.product.reviews[index]),
+                                          );
+                                        },
+                                        itemCount: state.product.reviews.length,
+                                      ),
+                                    ),
+                                    Container(
+                                        margin: const EdgeInsets.only(top: 10),
+                                        padding: const EdgeInsets.only(
+                                            top: 10, bottom: 10),
+                                        color: Colors.black12,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          children: const [
+                                            Center(
+                                                child: Text(
+                                                  "Product details",
+                                                  style: TextStyle(
+                                                      color: Colors.black26,
+                                                      fontSize: 14),
+                                                ))
+                                          ],
+                                        )),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Divider(
+                                      color: Colors.black38,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        showMaterialModalBottomSheet(
+                                            barrierColor: Colors.black12,
+                                            context: context,
+                                            builder: (context) =>
+                                            const BottomSheetDetail());
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.only(
+                                            top: 5, bottom: 5),
+                                        child: Row(
+                                          children: const [
+                                            Expanded(
+                                                child: Text(
+                                                  "Characteristics",
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                )),
+                                            Text(
+                                              "Brand, Models, etc",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w300,
+                                                  color: Colors.black),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const Divider(
+                                      color: Colors.black38,
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 5),
+                                      child: const
+                                      Text(
+                                          "Product Description",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400
+                                          )
+                                      ),
+                                      // InkWell(
+                                      // )
+                                    ),
+                                    Visibility(
+                                        visible: false,
+                                        child: InkWell(
+                                          child: Container(
+                                            padding: const EdgeInsets.all(10),
+                                            child: const Image(
+                                              height: 30,
+                                              width: 30,
+                                              image: AssetImage(
+                                                  'assets/images/ic_up_arrow'
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                    const Markdown(
+                                        data: Constants.FILE_HTML_PRODUCT,
+                                        padding: EdgeInsets.all(10),
+                                        // onTapLink: (text, href, title){
+                                        //
+                                        // },
+                                     ),
+                                    // StaggeredGrid.count(
+                                    //   crossAxisCount: 2,
+                                    //   children: state.products.map((e) {
+                                    //     return CardProduct(product: e, onClick: (){
+                                    //       Navigator.pushNamed(context, ProductDetailScreen.routeName,
+                                    //           arguments: e.id);
+                                    //     },);
+                                    //   }).toList(),
+                                    // )
+                                  ],
                                 ),
-                                Divider(
-                                  color: Colors.black38,
-                                ),
-                              ],
-                            ),
-                          ))
+                              ))
                         ],
                       ),
                     ),
@@ -391,20 +462,20 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                   Expanded(
                       child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                          padding: const EdgeInsets.all(10),
-                          child: const Text(
-                            "Search Products",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500),
-                          )),
-                    ),
-                  )),
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                              padding: const EdgeInsets.all(10),
+                              child: const Text(
+                                "Search Products",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500),
+                              )),
+                        ),
+                      )),
                 ],
               ),
             ),
@@ -494,8 +565,9 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
             Expanded(
               child: InkWell(
-                onTap: (){
-                  Navigator.pushNamed(context, ChatScreen.routeName, arguments: "1");
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, ChatScreen.routeName, arguments: "1");
                 },
                 child: Container(
                   padding: const EdgeInsets.all(10),
@@ -525,7 +597,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
+                    MaterialStateProperty.all<Color>(Colors.blue),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),

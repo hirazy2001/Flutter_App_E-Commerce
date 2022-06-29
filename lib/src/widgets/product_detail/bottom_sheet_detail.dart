@@ -6,28 +6,33 @@ class BottomSheetDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        height: 550,
         child: Column(children: [
-      const Center(
-        child: Text(
-          "Characteristics",
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
+          const Center(
+            child: Text(
+              "Characteristics",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
           ),
-        ),
-      ),
-      Expanded(
-          child: SingleChildScrollView(
-              child: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(left: 10),
-            child: itemCharacteristic(),
-          )
-        ],
-      )))
-    ]));
+          Expanded(
+              child: SingleChildScrollView(
+                  child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: itemCharacteristic(),
+              )
+            ],
+          )))
+        ]));
   }
 
   Widget itemCharacteristic() {

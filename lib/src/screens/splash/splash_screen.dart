@@ -5,6 +5,7 @@ import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_st
 import 'package:flutter_app_e_commerce/src/screens/authentication/authentication_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/tab/tab_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../bloc/authentication/authentication_bloc.dart';
@@ -31,7 +32,7 @@ class SplashScreenState extends State<SplashScreen> {
 
   late Timer _timer;
   var timerCountDown = const Duration(seconds: 5);
-  int countdown = 5;
+  int countdown = 4;
 
   @override
   void initState() {
@@ -83,21 +84,26 @@ class SplashScreenState extends State<SplashScreen> {
                   Color.fromARGB(100, 176, 212, 243),
                   Color.fromARGB(100, 50, 156, 248),
                 ]))),
-            Positioned(
-                top: 0,
+            const Positioned(
                 bottom: 0,
+                top: 0,
                 right: 0,
                 left: 0,
-                child: Center(child: BodySplash())),
+                child: Align(
+                  child: BodySplash(),
+                  alignment: Alignment.centerLeft,
+                )),
             Positioned(
-              bottom: 15,
+              bottom: 10,
               left: 0,
               right: 0,
               child: Center(
                   child: Text(
                 "Version " + _packageInfo.version,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.andada().copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14),
               )),
             )
           ],

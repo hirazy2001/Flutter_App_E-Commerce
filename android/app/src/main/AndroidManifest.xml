@@ -3,8 +3,7 @@
     package="com.example.flutter_app_e_commerce">
 
     <uses-permission
-        android:name="com.google.android.gms.permission.AD_ID"
-        tools:node="remove" />
+        android:name="com.google.android.gms.permission.AD_ID" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

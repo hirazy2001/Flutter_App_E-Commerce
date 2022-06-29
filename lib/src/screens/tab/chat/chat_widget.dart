@@ -10,7 +10,14 @@ class ChatWidget extends StatefulWidget {
 class ChatWidgetState extends State<ChatWidget> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
-    ));
+    return SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: [
+
+            ],
+          ),
+        )
+    );
   }
 }

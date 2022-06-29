@@ -80,7 +80,7 @@ dependencies:
   firebase_core: ^1.17.0
 
   # Firebase Messaging
-  firebase_messaging: ^11.4.0
+  firebase_messaging: ^11.4.2
 
   # Firebase Auth
   firebase_auth: ^3.3.18
@@ -154,6 +154,15 @@ dependencies:
   # Geolocator
   geolocator: ^9.0.0
 
+  # Animated Text Kit
+  animated_text_kit: ^4.2.2
+
+  # Flutter Markdown
+  flutter_markdown: ^0.6.10+2
+
+#  # Flutter HTML
+#  flutter_html: ^2.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -191,39 +200,7 @@ flutter:
     - assets/audio/
     - assets/svg/
     - assets/raw/
-#    - images/
-#    - assets/images/*.png
-#    - assets/images/ic_github.png
-#    - assets/images/slider_1.png
-#    - assets/images/slider_2.png
-#    - assets/images/slider_3.png
-#    - assets/images/ic_google.png
-#    - assets/images/ic_facebook.png
-#    - assets/images/nation/ic_vietnam.png
-#    - assets/images/ic_back.png
-#    - assets/images/ic_menu.png
-#    - assets/images/ic_hide.png
-#    - assets/images/ic_home.png
-#    - assets/images/ic_home_active.png
-#    - assets/images/ic_show.png
-#    - assets/images/ic_camera.png
-#    - assets/images/ic_qr.png
-#    - assets/images/ic_chat.png
-#    - assets/images/ic_chat_active.png
-#    - assets/images/ic_cart.png
-#    - assets/images/ic_cart_active.png
-#    - assets/images/ic_account.png
-#    - assets/images/ic_account_active.png
-#    - assets/images/ic_appliances.png
-#    - assets/images/ic_beauty.png
-#    - assets/images/ic_search.png
-#    - assets/images/ic_electronics.png
-#    - assets/images/ic_furniture.png
-#    - assets/images/ic_fashion.png
-#    - assets/images/ic_phone.png
-#    - assets/images/ic_clock.png
-#    - assets/images/ic_motorbike.png
-#    - assets/images/ic_star_rating.png
+    - assets/images/ic_star_rating.png
     - assets/raw/anim_loading.json
     - assets/raw/anim_refresh.json
 

@@ -6,14 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../common/auth_utils.dart';
 import '../../common/locator.dart';
 import '../../data/model/response/response_code.dart';
+import '../../data/model/user.dart';
 import '../authentication/authentication_event.dart';
 import '../authentication/authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-
   AuthUtils authUtils = AuthUtils.instance;
   final DataRepository _dataRepository = locator<DataRepository>();
+  final User? _user = null;
+  final UserLocal userLocal = defaultUser;
 
   AuthenticationBloc() : super(const AuthenticationState()) {
     on<AppStarted>(_onLoadAuthentication);
@@ -24,6 +26,8 @@ class AuthenticationBloc
     on<AuthenticationLoginEvent>(_login);
     on<RegisterEvent>(_signUp);
   }
+
+  User? get user => _user;
 
   String _token = "";
 
@@ -47,13 +51,11 @@ class AuthenticationBloc
       Emitter<AuthenticationState> emitter) async {
     emitter(const AuthenticationLoading());
     ResponseCode responseCode = await _dataRepository.login(event.loginRequest);
-    if(responseCode.status == 200){
-      print("Authenticated");
+    if (responseCode.status == 200) {
       UserLogin userLogin = UserLogin.fromJson(responseCode.data);
       _dataRepository.setToken(userLogin.token);
       emitter(const AuthenticatedState());
-    }
-    else{
+    } else {
       print("UnAuthenticated");
       _dataRepository.setToken("123");
       emitter(const UnAuthenticatedState());
@@ -72,10 +74,8 @@ class AuthenticationBloc
     } on Error catch (e) {}
   }
 
-  void _signUp(RegisterEvent event, Emitter<AuthenticationState> emitter) async{
-
-
-  }
+  void _signUp(
+      RegisterEvent event, Emitter<AuthenticationState> emitter) async {}
 
   void _signInGoogle(
       AuthenticationGoogle event, Emitter<AuthenticationState> emitter) async {
@@ -86,8 +86,7 @@ class AuthenticationBloc
   }
 
   void _requestPhoneAuthOtp(AuthenticationPhoneRequestOtp event,
-      Emitter<AuthenticationState> emitter) async{
-
+      Emitter<AuthenticationState> emitter) async {
     emitter(const OtpSendingState());
     try {
       await _dataRepository.requestPhoneOtp(event.otpRequest);
@@ -98,7 +97,7 @@ class AuthenticationBloc
   }
 
   void _requestEmailAuthOtp(AuthenticationEmailRequestOtp event,
-      Emitter<AuthenticationState> emitter) async{
+      Emitter<AuthenticationState> emitter) async {
     emitter(const OtpSendingState());
     var data = await _dataRepository.requestEmailOtp(event.otpRequest);
     emitter(const OtpSentState());
@@ -106,8 +105,8 @@ class AuthenticationBloc
 
   Future<void> authenticate() async {}
 
-  Future<void> signup(RegisterEvent event, Emitter<AuthenticationState> emitter) async {
-  }
+  Future<void> signup(
+      RegisterEvent event, Emitter<AuthenticationState> emitter) async {}
 
   Future<void> logout() async {}
 }

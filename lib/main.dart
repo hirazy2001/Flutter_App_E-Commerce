@@ -108,10 +108,10 @@ class MyApp extends StatelessWidget {
           // RepositoryProvider.of<UserAuthenticationRespository>(context),
           // RepositoryProvider.of<ApiClient>(context),
           )
-        ..add(
-          AppStarted(),
-        ),
-    );
+        // ..add(
+        //   AppStarted(),
+        // ),
+        );
   }
 
   BlocProvider<OtpBloc> _configureOtpBloc() {
