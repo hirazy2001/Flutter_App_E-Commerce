@@ -1,13 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import '../../data/model/product.dart';
+import '../../data/model/product_view.dart';
 
 class CardProduct extends StatelessWidget {
-  Product product;
+  ProductView product;
   Function() onClick;
 
-  CardProduct({required this.product, required this.onClick});
+  CardProduct({Key? key, required this.product, required this.onClick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

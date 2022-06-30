@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_bloc.dart';
-import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_event.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_state.dart';
 import 'package:flutter_app_e_commerce/src/bloc/internet/internet_cubit.dart';
 import 'package:flutter_app_e_commerce/src/bloc/otp/otp_bloc.dart';
@@ -76,9 +75,7 @@ class MyApp extends StatelessWidget {
                   Locale('en', 'US'),
                   Locale('nn'),
                 ],
-                localizationsDelegates: [
-
-                ],
+                localizationsDelegates: [],
                 title: 'Flutter Demo',
                 theme: ThemeData(
                   primarySwatch: Colors.blue,
@@ -103,11 +100,11 @@ class MyApp extends StatelessWidget {
 
   BlocProvider<AuthenticationBloc> _configureAuthenticationBloc() {
     return BlocProvider<AuthenticationBloc>(
-      create: (context) => AuthenticationBloc(
-          // UninitializedState(),
-          // RepositoryProvider.of<UserAuthenticationRespository>(context),
-          // RepositoryProvider.of<ApiClient>(context),
-          )
+        create: (context) => AuthenticationBloc(
+            // UninitializedState(),
+            // RepositoryProvider.of<UserAuthenticationRespository>(context),
+            // RepositoryProvider.of<ApiClient>(context),
+            )
         // ..add(
         //   AppStarted(),
         // ),

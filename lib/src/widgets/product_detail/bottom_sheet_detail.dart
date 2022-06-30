@@ -6,12 +6,15 @@ class BottomSheetDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        constraints:
+            BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 3 /4),
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-        height: 550,
-        child: Column(children: [
+        child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
           const Center(
             child: Text(
               "Characteristics",

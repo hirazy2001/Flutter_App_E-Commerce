@@ -34,17 +34,18 @@ class AuthenticationBloc
   void _onLoadAuthentication(
       AppStarted event, Emitter<AuthenticationState> emitter) async {
     emitter(const AuthenticationLoading());
-    bool isFirst = (await _dataRepository.firstOpenApp())!;
-    if (!isFirst) {
-      emitter(FirstOpenApp());
-    } else {
-      _token = (await _dataRepository.getToken())!;
-      if (_token != "") {
-        emitter(const AuthenticatedState());
-      } else {
-        emitter(const UnAuthenticatedState());
-      }
-    }
+    emitter(const AuthenticatedState());
+    // bool isFirst = (await _dataRepository.firstOpenApp())!;
+    // if (!isFirst) {
+    //   emitter(FirstOpenApp());
+    // } else {
+    //   _token = (await _dataRepository.getToken())!;
+    //   if (_token != "") {
+    //     emitter(const AuthenticatedState());
+    //   } else {
+    //     emitter(const UnAuthenticatedState());
+    //   }
+    // }
   }
 
   Future<void> _login(AuthenticationLoginEvent event,
@@ -108,5 +109,7 @@ class AuthenticationBloc
   Future<void> signup(
       RegisterEvent event, Emitter<AuthenticationState> emitter) async {}
 
-  Future<void> logout() async {}
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+  }
 }

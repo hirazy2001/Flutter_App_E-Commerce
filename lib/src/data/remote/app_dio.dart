@@ -1,7 +1,8 @@
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_firebase_performance/dio_firebase_performance.dart';
 
-import '../foundation/constants.dart';
+// final dioProvider = Provider((_) => AppDio.getInstance());
 
 class AppDio with DioMixin implements Dio{
 
@@ -20,5 +21,14 @@ class AppDio with DioMixin implements Dio{
     }));
 
     interceptors.add(DioFirebasePerformanceInterceptor());
+
+    // if (kDebugMode) {
+    //   // Local Log
+    //   interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
+    // }
+
+    httpClientAdapter = DefaultHttpClientAdapter();
   }
+
+  static Dio getInstance() => AppDio._();
 }

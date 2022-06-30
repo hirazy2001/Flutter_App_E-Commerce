@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class SettingScreen extends StatefulWidget{
-
+class SettingScreen extends StatefulWidget {
   static const String routeName = "/setting";
 
   @override
@@ -10,11 +10,12 @@ class SettingScreen extends StatefulWidget{
   }
 }
 
-class SettingScreenState extends State<SettingScreen>{
+class SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
+    return SafeArea(
+        child: Scaffold(
 
+    ));
+  }
 }

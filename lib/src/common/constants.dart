@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app_e_commerce/src/data/model/product.dart';
 
 class Constants {
   /// CONFIG
@@ -46,12 +45,27 @@ class Constants {
   static const double SIZE_ITEM_NAV = 22;
 
   /// GRADIENT TEXT
-  static Shader shaderGradient =
-      const LinearGradient(colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)])
-          .createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
+  static Shader shaderGradient = const LinearGradient(
+          colors: <Color>[Color(0xffDA44bb), Color(0xff8921aa)])
+      .createShader(const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
 
   /// TEXT HTML GENDER DESCRIPTION
-  static const String FILE_HTML_PRODUCT = "";
+  static const String FILE_HTML_PRODUCT = '''
+          # Minimal Markdown Test
+          ---
+          This is a simple Markdown test. Provide a text string with Markdown tags
+          to the Markdown widget and it will display the formatted output in a scrollable
+          widget.
+          ## Section 1
+          Maecenas eget **arcu egestas**, mollis ex vitae, posuere magna. Nunc eget
+           aliquam tortor. Vestibulum porta sodales efficitur. Mauris interdum turpis
+           eget est condimentum, vitae porttitor diam ornare.
+          ### Subsection A
+          Sed et massa finibus, blandit massa vel, vulputate velit. Vestibulum vitae
+          venenatis libero. ***Curabitur sem lectus, feugiat eu justo in, eleifend
+          accumsan ante.*** Sed a fermentum elit. Curabitur sodales metus id mi ornare,
+          in ullamcorper magna congue.
+          ''';
 
   /// IMAGE
   static const String icShow = 'assets/images/ic_show.png';

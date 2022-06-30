@@ -1,3 +1,4 @@
+import 'package:flutter_app_e_commerce/src/config/api_strategy.dart';
 import 'package:flutter_app_e_commerce/src/data/remote/remote_data.dart';
 import 'package:flutter_app_e_commerce/src/data/remote/remote_data_source.dart';
 import 'package:get_it/get_it.dart';
@@ -12,4 +13,5 @@ void setupLocator() {
   locator.registerLazySingleton<Preference>(() => PreferenceImpl());
   locator.registerLazySingleton<DataRepository>(() => DataRepositoryImpl());
   locator.registerLazySingleton<RemoteDataSource>(() => RemoteData());
+  locator.registerLazySingleton<ApiStrategy>(() => ApiStrategy.getInstance());
 }

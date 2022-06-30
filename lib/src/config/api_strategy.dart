@@ -7,7 +7,7 @@ class ApiStrategy {
 
   Dio? _client;
 
-  static final String baseUrl = Constants.BASE_URL;
+  static const String baseUrl = Constants.BASE_URL;
   static const int connectTimeOut = 10 * 1000; //连接超时时间为10秒
   static const int receiveTimeOut = 15 * 1000; //响应超时时间为15秒
 
@@ -18,11 +18,11 @@ class ApiStrategy {
 
   ApiStrategy._internal() {
     if (_client == null) {
-      BaseOptions options = new BaseOptions();
+      BaseOptions options = BaseOptions();
       options.connectTimeout = connectTimeOut;
       options.receiveTimeout = receiveTimeOut;
       options.baseUrl = baseUrl;
-      _client = new Dio(options);
+      _client = Dio(options);
       _client!.interceptors.add(LogInterceptor(
         responseBody: true,
         requestHeader: false,
@@ -104,9 +104,7 @@ class ApiStrategy {
   }
 
   static void _handError(Function errorCallback, String errorMsg) {
-    if (errorCallback != null) {
-      errorCallback(errorMsg);
-    }
+    errorCallback(errorMsg);
     print("<net> errorMsg :" + errorMsg);
   }
 }

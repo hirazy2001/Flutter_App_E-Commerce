@@ -85,7 +85,7 @@ List<Product> products = [
       name: "Ao phong 1",
       shop: "shop",
       sold: 40,
-      image: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
+      image: "https://cf.shopee.vn/file/c9e9a86cb516014c552b96a9ff0bf8d5",
       images: [],
       reviews: [
         Review(
@@ -141,7 +141,7 @@ List<Product> products = [
       id: "1",
       name: "Balo 3",
       shop: "shop",
-      image: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
+      image: "https://cf.shopee.vn/file/8493b4eefb7251e49ea0dd829690d584",
       images: [],
       reviews: [
         Review(
