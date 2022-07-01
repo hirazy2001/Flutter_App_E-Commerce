@@ -7,6 +7,7 @@ import '../../common/locator.dart';
 import '../../data/data_repository.dart';
 import '../../data/model/product.dart';
 import '../../data/model/product_view.dart';
+import '../../data/model/shop_view.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState>{
 
@@ -14,7 +15,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState>{
 
   String id = "";
   Product? product;
-
+  ShopView? shopView;
   List<ProductView> productViews = [];
 
   ProductBloc() : super(ProductLoadingState()){

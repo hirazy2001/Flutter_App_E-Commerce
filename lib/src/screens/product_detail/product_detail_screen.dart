@@ -58,17 +58,6 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                       child: Column(
                         children: [
                           appBar(),
-                          // const CustomScrollView(
-                          //   slivers: [
-                          //     SliverAppBar(
-                          //       backgroundColor: Colors.red,
-                          //       expandedHeight: 200,
-                          //       actions: [
-                          //
-                          //       ],
-                          //     )
-                          //   ],
-                          // ),
                           Expanded(
                               child: SingleChildScrollView(
                             controller: _scrollList,
@@ -286,6 +275,38 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                                     itemCount: state.product.reviews.length,
                                   ),
                                 ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Image(
+                                        height: 30,
+                                        width: 30,
+                                        image:
+                                            NetworkImage(state.shopView.image)),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          state.shopView.name,
+                                          style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black),
+                                        ),
+                                        Text(
+                                          state.shopView.online,
+                                          style: const TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w300,
+                                              color: Colors.black38),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
                                 Container(
                                     margin: const EdgeInsets.only(top: 10),
                                     padding: const EdgeInsets.only(
@@ -309,6 +330,26 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                                 const SizedBox(
                                   height: 10,
                                 ),
+                                Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: const Text(
+                                    "Outstanding Characteristics",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 13),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                state.product.characteristics.isNotEmpty
+                                    ? Column(
+                                        children: state.product.characteristics
+                                            .map((e) => itemFeature(e))
+                                            .toList(),
+                                      )
+                                    : const SizedBox(),
                                 const Divider(
                                   color: Colors.black38,
                                 ),
@@ -321,6 +362,8 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                                             const BottomSheetDetail());
                                   },
                                   child: Container(
+                                    margin: const EdgeInsets.only(
+                                        left: 10, right: 10),
                                     padding: const EdgeInsets.only(
                                         top: 5, bottom: 5),
                                     child: Row(
@@ -382,19 +425,6 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                                   //
                                   // },
                                 ),
-
-                                // FutureBuilder(
-                                //   future: widget.data,
-                                //   builder: (BuildContext context,
-                                //       AsyncSnapshot<dynamic> snapshot) {
-                                //     return const Markdown(
-                                //       data: Constants.FILE_HTML_PRODUCT,
-                                //       // onTapLink: (text, href, title){
-                                //       //
-                                //       // },
-                                //     );
-                                //   },
-                                // ),
                                 StaggeredGrid.count(
                                   crossAxisCount: 2,
                                   children: state.productDetailView.productViews
@@ -402,13 +432,12 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                                     return CardProduct(
                                       product: e,
                                       onClick: () {
-                                        Navigator.of(context).push(
-                                            CommonPageRoute(
+                                        Navigator.of(context)
+                                            .push(CommonPageRoute(
                                                 child: ProductDetailScreen(
                                                   productId: e.id!,
                                                 ),
-                                                direction:
-                                                    AxisDirection.right));
+                                                direction: AxisDirection.left));
                                         // Navigator.pushNamed(context,
                                         //     ProductDetailScreen.routeName,
                                         //     arguments: e.id);
@@ -430,10 +459,35 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
     );
   }
 
+  Widget itemFeature(String feature) {
+    return Container(
+      margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: 8,
+            width: 8,
+            decoration: const BoxDecoration(
+                color: Colors.black38, shape: BoxShape.circle),
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          Text(
+            feature,
+            style: const TextStyle(
+                color: Colors.black, fontSize: 13, fontWeight: FontWeight.w400),
+          )
+        ],
+      ),
+    );
+  }
+
   Widget appBar() {
     return Row(
       children: [
-        Flexible(
+        Expanded(
           child: InkWell(
             onTap: () {
               Navigator.pop(context);
@@ -449,7 +503,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
           flex: 1,
         ),
-        Flexible(
+        Expanded(
           child: InkWell(
             onTap: () {},
             child: Container(
@@ -495,7 +549,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
           flex: 6,
         ),
-        Flexible(
+        Expanded(
           child: InkWell(
             onTap: () {},
             child: Container(
@@ -509,7 +563,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
           flex: 1,
         ),
-        Flexible(
+        Expanded(
           child: InkWell(
             onTap: () {},
             child: Container(
@@ -523,7 +577,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
           flex: 1,
         ),
-        Flexible(
+        Expanded(
           child: InkWell(
             onTap: () {},
             child: Container(
@@ -543,66 +597,66 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
 
   Widget bottom(BuildContext context, ProductLoadedSuccessState state) {
     var productBloc = BlocProvider.of<ProductBloc>(context);
+
     return Container(
-        constraints: const BoxConstraints(minHeight: 40, maxHeight: 60),
+        constraints: const BoxConstraints(minHeight: 40, maxHeight: 55),
         child: Row(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(
-              width: 8,
-            ),
-            InkWell(
-              child: Container(
-                margin: const EdgeInsets.only(left: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Image(
-                        width: 20,
-                        height: 20,
-                        image: AssetImage("assets/images/ic_store.png")),
-                    Text(
-                      "Shop",
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.black),
-                    )
-                  ],
-                ),
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                width: 8,
               ),
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, ChatScreen.routeName,
-                    arguments: "1");
-              },
-              child: Container(
-                margin: const EdgeInsets.only(left: 5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Image(
-                        width: 20,
-                        height: 20,
-                        image: AssetImage("assets/images/ic_chatting.png")),
-                    Text(
-                      "Chat",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.black),
-                    )
-                  ],
+              Expanded(
+                child: InkWell(
+                  onTap: () {},
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Image(
+                          width: 18,
+                          height: 18,
+                          image: AssetImage("assets/images/ic_store.png")),
+                      Text(
+                        "Shop",
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black),
+                      )
+                    ],
+                  ),
                 ),
+                flex: 2,
               ),
-            ),
-            Expanded(
-              child: Row(children: [
-                ElevatedButton(
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, ChatScreen.routeName,
+                        arguments: "1");
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      Image(
+                          width: 18,
+                          height: 18,
+                          image: AssetImage("assets/images/ic_chatting.png")),
+                      Text(
+                        "Chat",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black),
+                      )
+                    ],
+                  ),
+                ),
+                flex: 2,
+              ),
+              Expanded(
+                child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.blue),
@@ -621,10 +675,13 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                         color: Colors.white, fontWeight: FontWeight.w500),
                   ),
                 ),
-                const SizedBox(
-                  width: 5,
-                ),
-                ElevatedButton(
+                flex: 3,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Expanded(
+                child: ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                         const Color.fromARGB(255, 229, 18, 18)),
@@ -641,10 +698,12 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w500),
                   ),
-                )
-              ]),
-            )
-          ],
-        ));
+                ),
+                flex: 3,
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+            ]));
   }
 }

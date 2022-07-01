@@ -163,6 +163,9 @@ dependencies:
   # Expandable
   expandable: ^5.0.1
 
+  # Speech To Text
+  speech_to_text: ^5.6.0
+
 #  # Flutter HTML
 #  flutter_html: ^2.2.1
 

@@ -12,7 +12,7 @@ class ApiStrategy {
   static const int receiveTimeOut = 15 * 1000; //响应超时时间为15秒
 
   static ApiStrategy getInstance() {
-    _instance ??= ApiStrategy._internal();
+    _instance = ApiStrategy._internal();
     return _instance;
   }
 

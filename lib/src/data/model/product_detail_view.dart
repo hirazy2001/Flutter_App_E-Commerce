@@ -10,10 +10,6 @@ class ProductDetailView {
 
   ProductDetailView({required this.product, required this.productViews});
 
-// factory ProductDetailView.fromJson(Map<String, dynamic> json)
-//   =>
-//     ProductDetailView(product: Product.fromJson(jsonDecode(json["product"])),
-//         productViews: productViews);
 }
 
 ProductDetailView tempProductView = ProductDetailView(
@@ -23,6 +19,12 @@ ProductDetailView tempProductView = ProductDetailView(
         shop: "shop",
         image: "https://cf.shopee.vn/file/3d27f158461d840be18ea6221b55e0ae_tn",
         images: [],
+        characteristics: [
+          "Thương hiệu: OEM",
+          "THÔNG TIN SẢN PHẨM",
+          "Đường may cẩn thận",
+          "Sản xuất tại Việt Nam"
+        ],
         reviews: [
           Review(
               userId: "12212",

@@ -95,15 +95,11 @@ class OtpScreenState extends State<OtpScreen> with CodeAutoFill {
         Navigator.pop(context);
       }),
       body:
-          // BlocProvider(
-          //   create: (BuildContext context) => OtpBloc(),
-          //  child:
           BlocListener<OtpBloc, OtpState>(
-        listener: (BuildContext context, state) {
+            listener: (BuildContext context, state) {
           if (state is OtpRequest) {
             DialogLoading.showDialogLoading(context);
           } else if (state is OtpAuthSuccess) {
-            print("Hello OtpAuthSuccess");
             Navigator.pop(context);
             Navigator.pushReplacement(
                 context,

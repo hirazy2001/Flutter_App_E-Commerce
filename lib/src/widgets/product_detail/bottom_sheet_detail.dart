@@ -8,6 +8,7 @@ class BottomSheetDetail extends StatelessWidget {
     return Container(
         constraints:
             BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 3 /4),
+        width: double.infinity,
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(

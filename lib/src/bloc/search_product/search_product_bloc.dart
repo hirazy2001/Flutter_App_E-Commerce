@@ -5,4 +5,9 @@ import 'package:flutter_app_e_commerce/src/bloc/search_product/search_product_st
 class SearchProductBloc extends Bloc<SearchProductEvent, SearchProductState>{
   SearchProductBloc(SearchProductState initialState) : super(initialState);
 
+  List<String> choiceSuggestions = [];
+
+  List<String> searchSuggestions = [];
+
+
 }

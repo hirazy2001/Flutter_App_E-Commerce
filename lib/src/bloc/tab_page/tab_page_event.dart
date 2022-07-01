@@ -5,6 +5,10 @@ class TabPageEvent extends Equatable{
   List<Object?> get props => throw UnimplementedError();
 }
 
+class BackHomeEvent extends TabPageEvent{
+
+}
+
 class ChangeTabEvent extends TabPageEvent{
   int newIndex;
 

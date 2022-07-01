@@ -1,6 +1,8 @@
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_bloc.dart';
+import 'package:flutter_app_e_commerce/src/screens/setting/setting_screen.dart';
+import 'package:flutter_app_e_commerce/src/utils/custom_line_paint.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccountWidget extends StatefulWidget {
@@ -28,7 +30,7 @@ class AccountWidgetState extends State<AccountWidget> {
                 child: Container(
                   padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                    color: Colors.black12,
+                      color: Colors.black12,
                       shape: BoxShape.circle,
                       border: Border.all(width: 1, color: Colors.white10)),
                   child: Image.asset(
@@ -43,14 +45,12 @@ class AccountWidgetState extends State<AccountWidget> {
               ),
               const Text(
                 "********900",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               ),
+              const Expanded(child: SizedBox()),
               InkWell(
-                onTap: (){
-
+                onTap: () {
+                  Navigator.of(context).pushNamed(SettingScreen.routeName);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(5),
@@ -177,8 +177,11 @@ class AccountWidgetState extends State<AccountWidget> {
                 )
               ],
             ),
-            Text(
+            const Text(
                 "These two widgets are very useful when you have numerous items to show, but the items cannot be fully visible in the viewport due to their sizes. We need to provide SliverChildDelegate to SliverList and SliverGrid, that can be either SliverChildListDelegate or SliverChildBuilderDelegate depending on your need.SliverChildListDelegate and SliverChildBuilderDelegateThese two delegates supply children for slivers. The difference is that SliverChildListDelegate provides children using an explicit list, which is convenient but reduces the benefit of building children lazily, while SliverChildBuilderDelegate provides children using an IndexedWidgetBuilder callback, so that the children do not even have to be built until they are displayed. The output indicates that widgets are NOT created until they are visible and the widgets been scrolled out of the viewport will be destroyed. This mechanism benefits memory reduction. The output indicates that widgets are NOT created until they are visible and the widgets been scrolled out of the viewport will be destroyed. This mechanism benefits memory reduction.The output indicates that widgets are NOT created until they are visible and the widgets been scrolled out of the viewport will be destroyed. This mechanism benefits memory reduction. The output indicates that widgets are NOT created until they are visible and the widgets been scrolled out of the viewport will be destroyed. This mechanism benefits memory reduction. The output indicates that widgets are NOT created until they are visible and the widgets been scrolled out of the viewport will be destroyed. This mechanism benefits memory reduction. The output indicates that widgets are NOT created until they are visible and the widgets been scrolled out of the viewport will be destroyed. This mechanism benefits memory reduction."),
+            CustomPaint(
+              painter: CustomLinePaint(size: 1),
+            )
           ],
         ))
       ],

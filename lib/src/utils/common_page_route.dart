@@ -11,8 +11,8 @@ class CommonPageRoute extends PageRouteBuilder {
       this.direction = AxisDirection.right,
       RouteSettings? settings})
       : super(
-            reverseTransitionDuration: const Duration(seconds: 1),
-            transitionDuration: const Duration(seconds: 1),
+            reverseTransitionDuration: const Duration(milliseconds: 400),
+            transitionDuration: const Duration(milliseconds: 800),
             pageBuilder: (context, animation, secondaryAnimation) => child,
             settings: settings);
 

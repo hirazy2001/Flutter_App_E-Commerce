@@ -15,7 +15,32 @@ class SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: Container(
+            padding: const EdgeInsets.all(5),
+            child: Image.asset(
+              "assets/images/ic_back.png",
+              width: 25,
+              height: 25,
+            ),
+          ),
+        ),
+        title: const Text(
+          "Account Setting",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 17,
+            fontWeight: FontWeight.w600
+          ),
+        ),
+      ),
+      body: Column(
+        children: [],
+      ),
     ));
   }
 }
