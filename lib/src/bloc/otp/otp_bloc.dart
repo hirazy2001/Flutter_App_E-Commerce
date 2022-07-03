@@ -38,9 +38,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
 
   void _onAuthOtp(OtpAuthEvent event, Emitter<OtpState> emitter) async {
     emitter(OtpRequest());
-    print("Hello 123");
     await _dataRepository.authOtp(event.otpAuth);
-    print("Hello 1234");
     emitter(OtpAuthSuccess());
   }
 }

@@ -9,6 +9,16 @@ class SearchLoadingState extends SearchProductState {
 
 }
 
-class SearchSuccessfulState extends SearchProductState {}
+class SearchSuggestion extends SearchProductState{
+  List<String> suggestions;
 
-class SearchErrorState extends SearchProductState {}
+  SearchSuggestion({required this.suggestions});
+}
+
+class SearchSuccessfulState extends SearchProductState {
+
+}
+
+class SearchErrorState extends SearchProductState {
+
+}

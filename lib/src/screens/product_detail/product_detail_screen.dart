@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_e_commerce/src/bloc/authentication/authentication_bloc.dart';
 import 'package:flutter_app_e_commerce/src/bloc/product/product_bloc.dart';
 import 'package:flutter_app_e_commerce/src/bloc/product/product_state.dart';
+import 'package:flutter_app_e_commerce/src/data/model/shop_view.dart';
 import 'package:flutter_app_e_commerce/src/screens/chat/chat_screen.dart';
 import 'package:flutter_app_e_commerce/src/widgets/product_detail/bottom_sheet_detail.dart';
 import 'package:flutter_app_e_commerce/src/widgets/product_detail/item_review.dart';
@@ -18,6 +19,7 @@ import '../../bloc/product/product_event.dart';
 import '../../common/constants.dart';
 import '../../utils/common_page_route.dart';
 import '../../widgets/home/card_product.dart';
+import '../search_products/search_product_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   static const String routeName = "/productDetail";
@@ -505,7 +507,9 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
         ),
         Expanded(
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, SearchProductScreen.routeName);
+            },
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -633,7 +637,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, ChatScreen.routeName,
-                        arguments: "1");
+                        arguments: ShopView(name: "Hello", image: "", online: ""));
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,

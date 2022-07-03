@@ -6,6 +6,5 @@ class CartEvent extends Equatable{
 }
 
 class CartLoading extends CartEvent{
-
 }
 

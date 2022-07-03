@@ -9,5 +9,7 @@ class SearchProductBloc extends Bloc<SearchProductEvent, SearchProductState>{
 
   List<String> searchSuggestions = [];
 
+  List<String> historySuggestions = [];
+
 
 }

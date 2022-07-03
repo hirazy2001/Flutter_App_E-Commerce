@@ -9,10 +9,10 @@ import 'package:flutter_app_e_commerce/src/screens/search_products/search_produc
 import 'package:flutter_app_e_commerce/src/screens/setting/setting_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/sign_up/sign_up_screen.dart';
 import 'package:flutter_app_e_commerce/src/screens/splash/splash_screen.dart';
-import 'package:flutter_app_e_commerce/src/screens/tab/search_products/search_products_widget.dart';
 import 'package:flutter_app_e_commerce/src/screens/tab/tab_screen.dart';
 
 import '../data/model/arguments/otp_argument.dart';
+import '../data/model/shop_view.dart';
 import '../screens/authentication/authentication_screen.dart';
 
 class AppRoutes {
@@ -45,7 +45,8 @@ class AppRoutes {
 
       case OtpScreen.routName:
         return MaterialPageRoute(
-            builder: (context) => OtpScreen(emailOrPhone: settings.arguments as OtpArgument),
+            builder: (context) =>
+                OtpScreen(emailOrPhone: settings.arguments as OtpArgument),
             settings: const RouteSettings(name: SettingScreen.routeName));
 
       case LoginOtpScreen.routeName:
@@ -60,27 +61,26 @@ class AppRoutes {
 
       case SignUpScreen.routeName:
         return MaterialPageRoute(
-            builder: (context) => SignUpScreen(emailOrPhone: settings.arguments as String),
-            settings: const RouteSettings(name: SignUpScreen.routeName)
-        );
+            builder: (context) =>
+                SignUpScreen(emailOrPhone: settings.arguments as String),
+            settings: const RouteSettings(name: SignUpScreen.routeName));
 
       case SearchProductScreen.routeName:
         return MaterialPageRoute(
             builder: (context) => const SearchProductScreen(),
-            settings: const RouteSettings(name: SearchProductScreen.routeName)
-        );
+            settings: const RouteSettings(name: SearchProductScreen.routeName));
 
       case ProductDetailScreen.routeName:
         return MaterialPageRoute(
-            builder: (context) => ProductDetailScreen(productId: settings.arguments as String),
-            settings: const RouteSettings(name: ProductDetailScreen.routeName)
-        );
+            builder: (context) =>
+                ProductDetailScreen(productId: settings.arguments as String),
+            settings: const RouteSettings(name: ProductDetailScreen.routeName));
 
       case ChatScreen.routeName:
         return MaterialPageRoute(
-            builder: (context) => ChatScreen(roomId: settings.arguments as String),
-            settings: const RouteSettings(name: ProductDetailScreen.routeName)
-        );
+            builder: (context) =>
+                ChatScreen(shop: settings.arguments as ShopView),
+            settings: const RouteSettings(name: ProductDetailScreen.routeName));
 
       default:
         return MaterialPageRoute(
